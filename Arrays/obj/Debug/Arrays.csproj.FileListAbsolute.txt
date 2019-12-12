@@ -1,7 +1,0 @@
-D:\C# Courses\Arrays\Arrays\bin\Debug\Arrays.exe.config
-D:\C# Courses\Arrays\Arrays\bin\Debug\Arrays.exe
-D:\C# Courses\Arrays\Arrays\bin\Debug\Arrays.pdb
-D:\C# Courses\Arrays\Arrays\obj\Debug\Arrays.csprojAssemblyReference.cache
-D:\C# Courses\Arrays\Arrays\obj\Debug\Arrays.csproj.CoreCompileInputs.cache
-D:\C# Courses\Arrays\Arrays\obj\Debug\Arrays.exe
-D:\C# Courses\Arrays\Arrays\obj\Debug\Arrays.pdb
