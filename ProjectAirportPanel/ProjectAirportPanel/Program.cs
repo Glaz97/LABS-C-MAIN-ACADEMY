@@ -8,7 +8,7 @@ namespace ProjectAirportPanel
 {
     class Program
     {
-        enum FlightStatus
+        public enum FlightStatus
         {
             Checkin,
             GateClosed,
@@ -20,22 +20,310 @@ namespace ProjectAirportPanel
             InFlight
         }
 
-        struct Flights
+        public struct Flights
         {
-            string CityArrival;
-            string CityDepature;
-            string AitportArrival;
-            string AitportDepature;
-            string FlightNumber;
-            string Terminal;
-            DateTime TimeExpected;
-            DateTime DateAndTimeArival;
-            DateTime DateAndTimeDepature;
+           public string CityArrival;
+           public string CityDepature;
+           public string AiroportArrival;
+           public string AiroportDepature;
+           public string FlightNumber;
+           public string Terminal;
+           public string Gate;
+           public DateTime TimeExpected;
+           public DateTime DateAndTimeArival;
+           public DateTime DateAndTimeDepature;
+           public FlightStatus Status;
+
+           public Flights (string CityDepature, string CityArrival, string AiroportDepature, string AiroportArrival, string FlightNumber, string Terminal , string Gate, DateTime TimeExpected, DateTime DateAndTimeArival, DateTime DateAndTimeDepature, FlightStatus Status)
+            {
+                this.CityArrival = CityArrival;
+                this.CityDepature = CityDepature;
+                this.AiroportArrival = AiroportArrival;
+                this.AiroportDepature = AiroportDepature;
+                this.FlightNumber = FlightNumber;
+                this.Terminal = Terminal;
+                this.Gate = Gate;
+                this.TimeExpected = TimeExpected;
+                this.DateAndTimeArival = DateAndTimeArival;
+                this.DateAndTimeDepature = DateAndTimeDepature;
+                this.Status = Status;
+            }
         }
 
         static void Main(string[] args)
         {
+            Console.WindowHeight = 30;
+            Console.WindowWidth = 150;
+            Console.ForegroundColor = ConsoleColor.White;
 
+            List<Flights> Flights = new List<Flights>();
+
+            Flights.Add(new Flights("Zhytomyr  ", "Kyiv", "Airoport-1", "Boryspil", "UA228-1488", "D", "1D", new DateTime(2019, 12, 15), new DateTime(2019, 12, 15), new DateTime(2019, 12, 14), FlightStatus.InFlight));
+            Flights.Add(new Flights("Cherkasy  ", "Kyiv", "Airoport-2", "Boryspil", "UA227-1488", "F", "2D", new DateTime(2019, 12, 17), new DateTime(2019, 12, 17), new DateTime(2019, 12, 12), FlightStatus.Checkin));
+            Flights.Add(new Flights("Lviv      ", "Kyiv", "Airoport-3", "Boryspil", "UA229-1488", "A", "3D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
+            Flights.Add(new Flights("Kharjiv   ", "Kyiv", "Airoport-4", "Boryspil", "UA222-1488", "C", "4D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Canceled));
+            Flights.Add(new Flights("Odessa    ", "Kyiv", "Airoport-5", "Boryspil", "UA221-1488", "B", "5D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
+            Flights.Add(new Flights("Sumy      ", "Kyiv", "Airoport-6", "Boryspil", "UA225-1488", "G", "6D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
+
+            int exit = 1;
+        
+            while (exit == 1)
+            {
+                ReWriteFlightStatuses(Flights);
+
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.WriteLine("\n");
+                Console.WriteLine("Меню действий:");
+                Console.WriteLine("Введите 1 - Добавить элемент перелета;");
+                Console.WriteLine("Введите 2 - Изменить элемент перелета;");
+                Console.WriteLine("Введите 3 - Удалить элемент перелета;");
+                Console.WriteLine("Введите 4 - Поиск по элементу строки перелета;");
+                Console.WriteLine("Введите 5 - Поиск ближайшего перелета в определенный Город;");
+                Console.WriteLine("Введите 6 - Вывод срочной информации на панель!;");
+                Console.WriteLine("Введите 0 - Для выхода из программы.");
+
+                int option = 0;
+
+                try
+                {
+                    option = Convert.ToInt32(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Ошибка при вводе. Выход из программы.");
+                    Console.ReadKey();
+                }
+                
+                if (option >= 0 & option <= 6)
+                {
+                    int Answer = RunTheVariant(option, Flights);
+
+                    if(Answer == 0)
+                    {
+                        exit = 0;
+                    }
+                }
+            }
+        }
+
+        static void ReWriteFlightStatuses(List<Flights> Flights)
+        {
+            Console.Clear();
+            Console.WriteLine("Расписание авиаперелетов: ");
+            Console.WriteLine("--------------------------------------------------------" +
+            "-----------------------------------------------------------------------------");
+            Console.WriteLine("| Departure | Arrival | Air. Arriv. | Air. Depar. | Flight № | Terminal | Gate | Time Expected | Time Arival | Time Depature |"
+               + "Status|");
+
+            foreach (var flight in Flights)
+            {
+                if (!string.IsNullOrEmpty(flight.CityArrival))
+                {
+                    Console.WriteLine("-----------------------------------------------------" +
+                    "--------------------------------------------------------------------------------");
+                    Console.ForegroundColor = ColorOfText(flight.Status);
+                    Console.WriteLine(flight.CityDepature + "|" + flight.CityArrival + "|" + flight.AiroportDepature + "|" +
+                    flight.AiroportArrival + "|" + flight.FlightNumber + "|" + flight.Terminal +
+                    "|" + flight.TimeExpected + "|" + flight.DateAndTimeArival + "|" + flight.DateAndTimeDepature + "|" + flight.Status);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+
+            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+        }
+
+        static ConsoleColor ColorOfText(FlightStatus status)
+        {
+            ConsoleColor Color =  ConsoleColor.White;
+
+            if (status == FlightStatus.Delayed)
+            {
+                Color = ConsoleColor.Yellow;
+            }
+            else if (status == FlightStatus.Checkin)
+            {
+                Color = ConsoleColor.Green;
+            }
+            else if (status == FlightStatus.Canceled)
+            {
+                Color = ConsoleColor.Red;
+            }
+
+            return Color;
+        }
+
+        static int RunTheVariant(int option, List<Flights> Flights)
+        {
+            int Answer = 1;
+
+            if (option == 0)
+            {
+                Answer = 0;
+            }
+            else if (option == 1)
+            {
+                AddElement(Flights);
+            }
+            else if (option == 2)
+            {
+                ChangeElement(Flights);
+            }
+            else if (option == 3)
+            {
+                DeleteElement(Flights);
+            }
+            else if (option == 4)
+            {
+                SearchElement(Flights);
+            }
+            else if (option == 5)
+            {
+                SearchFirstToTheCityElement(Flights);
+            }
+            else if (option == 6)
+            {
+                WriteAlarm();
+            }
+
+            return Answer;
+        }
+
+        public static void AddElement(List<Flights> Flights)
+        {
+            Console.WriteLine("Введите 11 элементов строки перелета через кому: (части даты разделять точкой (12.12.2019 0:00:00))");
+            string StringOfArrayFlight = Console.ReadLine();
+            string[] ArrayFlight = StringOfArrayFlight.Split(',');
+
+            int length = Flights.Count;
+
+            string[] TimeExpected = ArrayFlight[7].Split('.');
+            string[] TimeArrival = ArrayFlight[8].Split('.');
+            string[] TimeDepature = ArrayFlight[9].Split('.');
+
+            Flights.Add( new Flights(ArrayFlight[0], ArrayFlight[1], ArrayFlight[2], ArrayFlight[3], ArrayFlight[4], ArrayFlight[5],
+            ArrayFlight[6], new DateTime(Convert.ToInt32(TimeExpected[2]), Convert.ToInt32(TimeExpected[1]), Convert.ToInt32(TimeExpected[0])),
+            new DateTime(Convert.ToInt32(TimeArrival[2]), Convert.ToInt32(TimeArrival[1]), Convert.ToInt32(TimeArrival[0])),
+            new DateTime(Convert.ToInt32(TimeDepature[2]), Convert.ToInt32(TimeDepature[1]), Convert.ToInt32(TimeDepature[0])), FlightStatus.InFlight));
+
+            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+        }
+
+        public static void ChangeElement(List<Flights> Flights)
+        {
+            Console.WriteLine("Введите номер строки для изменения в формате целого числа: ");
+            int numberToRemove = 0;
+
+            while (numberToRemove < 1 || numberToRemove > Flights.Count)
+            {
+                Console.WriteLine("Введите целое число от 1 до " + Flights.Count.ToString() + '\n');
+                numberToRemove = Convert.ToInt32(Console.ReadLine());
+            }
+            Flights.RemoveAt(numberToRemove - 1);
+
+            AddElement(Flights);
+            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+        }
+
+        public static void DeleteElement(List<Flights> Flights)
+        {
+            Console.WriteLine("Введите номер строки для удаления в формате целого числа: ");
+
+            int numberToRemove = 0;
+
+            while (numberToRemove < 1 || numberToRemove > Flights.Count)
+            {
+                Console.WriteLine("Введите целое число от 1 до "+ Flights.Count.ToString() + '\n');
+                numberToRemove = Convert.ToInt32(Console.ReadLine());
+            }
+            if (Flights.Count > 1)
+            {
+                Flights.RemoveAt(numberToRemove - 1);
+            }
+            else if (Flights.Count == 1)
+            {
+                Flights.RemoveAt(0);
+            }
+        
+            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+        }
+
+        public static void SearchElement(List<Flights> Flights)
+        {
+            Console.WriteLine("Введите строку для поиска данных (название аэропорта или номер рейса или время прибытия)");
+            string SearchString = Console.ReadLine();
+            string numberOfFlight = "";
+
+            foreach (var flight in Flights)
+            {
+                if (flight.FlightNumber.Trim(' ') == SearchString || flight.DateAndTimeArival.ToString().Trim(' ') == SearchString)
+                {
+                   numberOfFlight = flight.FlightNumber;
+                }
+                else if (flight.AiroportArrival.Trim(' ') == SearchString || flight.AiroportDepature.Trim(' ') == SearchString)
+                {
+                   numberOfFlight = flight.FlightNumber;
+                }
+            }
+
+            if (numberOfFlight != "")
+            {
+                Console.WriteLine("Ваша строка с номером рейса № - " + numberOfFlight);
+            }
+            else
+            {
+                Console.WriteLine("По вашему запросу ничего небыло найдено! Нажмите enter для продолжения!");
+            }
+
+            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+            Console.ReadKey();
+        }
+
+        public static void SearchFirstToTheCityElement(List<Flights> Flights)
+        {
+            Console.WriteLine("Введите название аэропорта для перелета и удобную для вас дату через кому, дата должна быть в формате (12.12.2019 0:00:00)");
+            string SearchString = Console.ReadLine();
+            string[] SearchArray = SearchString.Split(',');
+
+            string numberOfFlight = "";
+
+            List<Flights> result = Flights.Where(x => x.DateAndTimeDepature.ToString() == SearchArray[1]).ToList();
+                
+                if (result.Count > 0)
+                {
+                    foreach (var element in result)
+                    {
+                        if (element.AiroportArrival.Trim(' ') == SearchArray[0])
+                        {
+                            numberOfFlight = element.FlightNumber;
+                            Console.WriteLine("Ваша строка с номером рейса № - " + numberOfFlight);
+                        }
+                    }
+                }
+
+            if (numberOfFlight == "")
+            {
+                Console.WriteLine("По вашему запросу ничего небыло найдено! Нажмите enter для продолжения!");
+            }
+
+            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+            Console.ReadKey();
+        }
+
+        public static void WriteAlarm()
+        {
+            Console.WriteLine("Введите любую строку для срочного оповещения!");
+            string AlarmString = Console.ReadLine();
+
+            Console.WriteLine(AlarmString);
+            for (int i = 0; i < 2; i++)
+            {
+                Console.Beep(300, 500);
+                Console.Beep(200, 600);
+                Console.Beep(100, 700);
+                Console.Beep(400, 800);
+            }
+            Console.ReadKey();
         }
     }
 }
