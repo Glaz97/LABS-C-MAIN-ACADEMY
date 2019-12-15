@@ -4,8 +4,58 @@ namespace Operators
 {
     class Program
     {
+        enum TypeOfComputer
+        {
+            server,
+            desktop,
+            laptop
+        }
+
+        public struct Computer
+        {
+            public string TypeOfComputer;
+            public int AmountOfComputers;
+            public int AmountOfCPUCores;
+            public float FrequencyOfCPU;
+            public int AmountOfOperativeMemory;
+            public int AmountOfHDDMemory;
+
+            public Computer(string TypeOfComputer, int AmountOfComputers, int AmountOfCPUCores, float FrequencyOfCPU, int AmountOfOperativeMemory, int AmountOfHDDMemory)
+            {
+                this.TypeOfComputer = TypeOfComputer;
+                this.AmountOfComputers = AmountOfComputers;
+                this.AmountOfCPUCores = AmountOfCPUCores;
+                this.FrequencyOfCPU = FrequencyOfCPU;
+                this.AmountOfOperativeMemory = AmountOfOperativeMemory;
+                this.AmountOfHDDMemory = AmountOfHDDMemory;
+            }
+        }
+
+        public struct Department
+        {
+            public int DepartmentNumber;
+            public Computer Servers;
+            public Computer Desktops;
+            public Computer Laptops;
+
+            public Department(int DepartmentNumber, Computer Servers, Computer Desktops, Computer Laptops)
+            {
+                this.DepartmentNumber = DepartmentNumber;
+                this.Servers = Servers;
+                this.Desktops = Desktops;
+                this.Laptops = Laptops;
+            }
+        }
+
         static void Main(string[] args)
         {
+            Department[] Departments = new Department[4];
+
+            Departments[0] = new Department(1, new Computer(GetName(0),1,8,3,16,2000), new Computer (GetName(1),2,4,2.5F,6,500), new Computer (GetName(2),2,2,1.7F,4,250));
+            Departments[1] = new Department(2, new Computer(GetName(0),0,8,3,16,2000), new Computer (GetName(1),0,4,2.5F,6,500), new Computer (GetName(2),3,2,1.7F,4,250));
+            Departments[2] = new Department(3, new Computer(GetName(0),0,8,3,16,2000), new Computer (GetName(1),3,4,2.5F,6,500), new Computer (GetName(2),2,2,1.7F,4,250));
+            Departments[3] = new Department(4, new Computer(GetName(0),2,8,3,16,2000), new Computer (GetName(1),1,4,2.5F,6,500), new Computer (GetName(2),1,2,1.7F,4,250));
+
             var exit = 1;
             while (exit == 1)
             {
@@ -30,34 +80,19 @@ namespace Operators
                 }
                 else if (VariantNumber == 1)
                 {
-                    Wolf_Goat_And_Cabbage();
+                    CountAmountOfComputers(Departments);
                 }
                 else if (VariantNumber == 2)
                 {
-                    Console.WriteLine("Укажите вид операции:" + '\n');
-                    Console.WriteLine("1 - Умножение" + '\n' + "2 - Деление" + '\n' + "3 - Сложение" + '\n' + "4 - Вычитание" + '\n' + "5 - Экспонента" + '\n');
-                    try
-                    {
-                        int VariantCalculateNumber = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Ответ: " + Calculator(VariantCalculateNumber));
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Ошибка! Введите целое число от 1 до 5 и попробуйте снова!");
-                    }
+                    FindComputerWithBiggestHDD(Departments);
                 }
                 else if (VariantNumber == 3)
                 {
-                    Factorial();
+                    FindComputerWithWeakestCPU(Departments);
                 }
                 else if (VariantNumber == 4)
                 {
-                    Console.WriteLine("В этой игре вам нужно угадать рандомное ЦЕЛОЕ число от 0 до 10" + '\n');
-                    Console.WriteLine("Введите число от 0 до 10" + '\n');
-
-                    int RandomNumber = Convert.ToInt32(Console.ReadLine());
-
-                    Guess_The_Number(RandomNumber);
+                    RaiseMemoryOfComputers(Departments);
                 }
 
                 Console.WriteLine("Поздравляем! Хотите попробовать что-то еще? 0 - НЕТ, 1 - КОНЕЧНО!");
@@ -74,157 +109,121 @@ namespace Operators
             }
         }
 
-        public static void Wolf_Goat_And_Cabbage()
+        public static string GetName (int value)
         {
-            Console.WriteLine("Ваша задача перепавить козу, волка и капусту таким образом, чтобы все оказалось на том берегу в целом виде!" + '\n');
-            Console.WriteLine("Введите по очереди номера переправ (7 шагов):" + '\n');
-            Console.WriteLine("Возможные варианты переправ:" + '\n');
-
-            Console.WriteLine("|Туда| Фермер и волк - 1:" + '\n');
-            Console.WriteLine("|Туда| Фермер и капуста - 2:" + '\n');
-            Console.WriteLine("|Туда| Фермер и коза - 3:" + '\n');
-            Console.WriteLine("|Туда| Фермер - 4:" + '\n');
-            Console.WriteLine("|Обратно| Фермер и волк - 5:" + '\n');
-            Console.WriteLine("|Обратно| Фермер и капуста - 6:" + '\n');
-            Console.WriteLine("|Обратно| Фермер и коза - 7:" + '\n');
-            Console.WriteLine("|Обратно| Фермер - 8:" + '\n');
-
-            int[] MassiveOfOptionsVar1 = new int[7] { 3, 8, 1, 7, 2, 8, 3 };
-            int[] MassiveOfOptionsVar2 = new int[7] { 3, 8, 2, 7, 1, 8, 3 };
-
-            bool check1;
-            bool check2;
-            int option = 1;
-
-            for (int i = 0; i < MassiveOfOptionsVar1.Length; i++)
-            {
-                try
-                {
-                    option = Convert.ToInt32(Console.ReadLine());
-                }
-                catch
-                {
-                    Console.WriteLine("Ошибка! Для ввода допустимы только целые числа от 1 до 8!");
-                    return;
-                }
-
-                while (option < 1 || option > 8)
-                {
-                    Console.WriteLine("Ошибка! Для ввода допустимы только целые числа от 1 до 8! Повторите ввод!");
-                    option = Convert.ToInt32(Console.ReadLine());
-                }
-
-                check1 = option != MassiveOfOptionsVar1[i];
-                check2 = option != MassiveOfOptionsVar2[i];
-
-                if (check1 && check2)
-                {
-                    Console.WriteLine("Ошибка! Ваши действия привели к трагическим последствиям для козы или капусты!!!!!" + '\n');
-                    Console.WriteLine("Испытайте удачу в следуйщий раз!" + '\n');
-                    return;
-                }
-            }
-
-            Console.WriteLine("Ура! Коза и капуста целы! Вам удалось!" + '\n');
+            return Enum.GetName(typeof(TypeOfComputer), value);
         }
 
-        public static double Calculator(int VariantCalculateNumber)
+        public static void CountAmountOfComputers(Department[] Departments)
         {
-            double result = 0, Variable1 = 0, Variable2 = 0;
+            int CountOfComputers = 0;
 
-            Console.WriteLine("Введите два числа" + '\n');
-            try
-            {
-                Console.WriteLine("Введите первое число" + '\n');
-                Variable1 = Convert.ToInt32(Console.ReadLine());
-
-                Console.WriteLine("Введите второе число" + '\n');
-                Variable2 = Convert.ToInt32(Console.ReadLine());
-            }
-            catch
-            {
-                Console.WriteLine("Ошибка при вводе одного из аргументов! Необходимо произвести корректный ввод заново!" + '\n');
-                return result;
+            foreach (var department in Departments) {
+                CountOfComputers += department.Desktops.AmountOfComputers + department.Servers.AmountOfComputers + department.Laptops.AmountOfComputers;
             }
 
-            if (VariantCalculateNumber == 1)
-            {
-                return result = Variable1 * Variable2;
-            }
-            else if (VariantCalculateNumber == 2)
-            {
-                return result = Variable1 / Variable2;
-            }
-            else if (VariantCalculateNumber == 3)
-            {
-                return result = Variable1 + Variable2;
-            }
-            else if (VariantCalculateNumber == 4)
-            {
-                return result = Variable1 - Variable2;
-            }
-            else if (VariantCalculateNumber == 5)
-            {
-                result = Math.Pow(Variable1, Variable2);
-                return result;
-            }
-            else
-            {
-                Console.WriteLine("Вы ввели невереное число, попробуйте еще раз!" + '\n');
-                return result;
-            }
+            Console.WriteLine("Всего компьютеров - " + CountOfComputers);
         }
 
-        public static void Factorial()
+        public static void FindComputerWithBiggestHDD(Department[] Departments)
         {
-            int Variable1 = 0, Variable2 = 0;
-            Console.WriteLine("Введите два числа" + '\n');
-            try
-            {
-                Console.WriteLine("Введите количество циклов в факториале" + '\n');
-                Variable1 = Convert.ToInt32(Console.ReadLine());
+            string NameOfPCAndDepartament = "";
 
-                Console.WriteLine("Введите значение факториала" + '\n');
-                Variable2 = Convert.ToInt32(Console.ReadLine());
-            }
-            catch
+            var tempDesktop = 0;
+            var tempServer = 0;
+            var tempLaptop = 0;
+
+            foreach (var department in Departments)
             {
-                Console.WriteLine("Ошибка при вводе одного из аргументов! Необходимо произвести корректный ввод заново!" + '\n');
-                return;
+                if (department.Desktops.AmountOfHDDMemory > tempDesktop)
+                {
+                    tempDesktop = department.Desktops.AmountOfHDDMemory; 
+                }
+
+                if (department.Servers.AmountOfHDDMemory > tempServer)
+                {
+                    tempServer = department.Servers.AmountOfHDDMemory;
+                }
+
+                if (department.Laptops.AmountOfHDDMemory > tempLaptop)
+                {
+                    tempLaptop = department.Laptops.AmountOfHDDMemory;
+                }
+
+                if (tempDesktop > tempServer & tempDesktop > tempLaptop)
+                {
+                    NameOfPCAndDepartament = "Desktop " + tempDesktop + " GB";
+                }
+                else if (tempServer > tempLaptop & tempServer > tempDesktop)
+                {
+                    NameOfPCAndDepartament = "Server " + tempServer + " GB";
+                }
+                else if (tempLaptop > tempServer & tempLaptop > tempDesktop)
+                {
+                    NameOfPCAndDepartament = "Laptop " + tempLaptop + " GB";
+                }
             }
 
-            for (int i = 2; i <= Variable1; i++)
-            {
-                Variable2 = Variable2 * i;
-            }
-
-            Console.WriteLine(Variable2.ToString());
+            Console.WriteLine("Больше всего памяти у пк - " + NameOfPCAndDepartament);
         }
 
-        public static void Guess_The_Number(int Variable)
+        public static void FindComputerWithWeakestCPU(Department[] Departments)
         {
-            Random rand = new Random();
-            int number = rand.Next(0, 10);
+            string NameOfPCAndDepartament = "";
 
-            if (Variable > number)
+            var tempDesktop = 0;
+            var tempServer = 0;
+            var tempLaptop = 0;
+
+            foreach (var department in Departments)
             {
-                Console.WriteLine("Ваше число больше от случайно сгенерированного!");
+                if (department.Desktops.AmountOfHDDMemory > tempDesktop)
+                {
+                    tempDesktop = department.Desktops.AmountOfCPUCores;
+                }
+
+                if (department.Servers.AmountOfHDDMemory > tempServer)
+                {
+                    tempServer = department.Servers.AmountOfCPUCores;
+                }
+
+                if (department.Laptops.AmountOfHDDMemory > tempLaptop)
+                {
+                    tempLaptop = department.Laptops.AmountOfCPUCores;
+                }
+
+                if (tempDesktop < tempServer & tempDesktop < tempLaptop)
+                {
+                    NameOfPCAndDepartament = "Desktop " + tempDesktop + " HGz";
+                }
+                else if (tempServer < tempLaptop & tempServer < tempDesktop)
+                {
+                    NameOfPCAndDepartament = "Server " + tempServer + " HGz";
+                }
+                else if (tempLaptop < tempServer & tempLaptop < tempDesktop)
+                {
+                    NameOfPCAndDepartament = "Laptop " + tempLaptop + " HGz";
+                }
             }
-            else if (Variable < number)
+
+            Console.WriteLine("Меньше всего частота CPU у пк - " + NameOfPCAndDepartament);
+        }
+
+        public static void RaiseMemoryOfComputers(Department[] Departments)
+        {
+            for(int i = 0; i < Departments.Length; i++) 
             {
-                Console.WriteLine("Ваше число меньше от случайно сгенерированного!");
+                Departments[i].Desktops.AmountOfOperativeMemory = 8;
             }
-            else if (Variable == number)
-            {
-                Console.WriteLine("ВЫ УГАДАЛИ! ПЕРЕМОГА!");
-            }
+
+            Console.WriteLine("Оперативная память у всех компьютеров Desktop увеличена до 8 GB");
         }
 
         public static int SelectVariant(int VariantNumber)
         {
             Console.WriteLine("Укажите номер алгоритма для запуска" + '\n');
-            Console.WriteLine("1 - Загадка фермера" + '\n' + "2 - Простой калькулятор" + '\n' + "3 - Расчет факториала" + '\n' + "4 - Игра, угадай номер" + '\n');
-
+            Console.WriteLine("1 - Количество компьютеров" + '\n' + "2 - Компьютер с самым большим HDD" + '\n' + "3 - Компьютер с самым слабым CPU" +
+            "" + '\n' + "4 - Увеличить память компудактеров на 8 GB" + '\n');
             try
             {
                 VariantNumber = Convert.ToInt32(Console.ReadLine());
