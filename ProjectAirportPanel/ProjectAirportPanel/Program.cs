@@ -197,9 +197,9 @@ namespace ProjectAirportPanel
 
             int length = Flights.Count;
 
-            string[] TimeExpected = ArrayFlight[7].Split('.');
-            string[] TimeArrival = ArrayFlight[8].Split('.');
-            string[] TimeDepature = ArrayFlight[9].Split('.');
+            string[] TimeExpected = ArrayFlight[6].Split('.');
+            string[] TimeArrival = ArrayFlight[7].Split('.');
+            string[] TimeDepature = ArrayFlight[8].Split('.');
 
             Flights.Add( new Flights(ArrayFlight[0], ArrayFlight[1], ArrayFlight[2], ArrayFlight[3], ArrayFlight[4], ArrayFlight[5],
             ArrayFlight[6], new DateTime(Convert.ToInt32(TimeExpected[2]), Convert.ToInt32(TimeExpected[1]), Convert.ToInt32(TimeExpected[0])),
