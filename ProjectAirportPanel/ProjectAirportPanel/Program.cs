@@ -130,7 +130,7 @@ namespace ProjectAirportPanel
                 }
             }
 
-            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+            Flights.OrderBy(u => u.DateAndTimeArival);
         }
 
         static ConsoleColor ColorOfText(FlightStatus status)
@@ -206,7 +206,7 @@ namespace ProjectAirportPanel
             new DateTime(Convert.ToInt32(TimeArrival[2]), Convert.ToInt32(TimeArrival[1]), Convert.ToInt32(TimeArrival[0])),
             new DateTime(Convert.ToInt32(TimeDepature[2]), Convert.ToInt32(TimeDepature[1]), Convert.ToInt32(TimeDepature[0])), FlightStatus.InFlight));
 
-            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+            Flights.OrderBy(u => u.DateAndTimeArival);
         }
 
         public static void ChangeElement(List<Flights> Flights)
@@ -222,7 +222,7 @@ namespace ProjectAirportPanel
             Flights.RemoveAt(numberToRemove - 1);
 
             AddElement(Flights);
-            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+            Flights.OrderBy(u => u.DateAndTimeArival);
         }
 
         public static void DeleteElement(List<Flights> Flights)
@@ -244,8 +244,8 @@ namespace ProjectAirportPanel
             {
                 Flights.RemoveAt(0);
             }
-        
-            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+
+            Flights.OrderBy(u => u.DateAndTimeArival);
         }
 
         public static void SearchElement(List<Flights> Flights)
@@ -275,7 +275,7 @@ namespace ProjectAirportPanel
                 Console.WriteLine("По вашему запросу ничего небыло найдено! Нажмите enter для продолжения!");
             }
 
-            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+            Flights.OrderBy(u => u.DateAndTimeArival);
             Console.ReadKey();
         }
 
@@ -306,7 +306,7 @@ namespace ProjectAirportPanel
                 Console.WriteLine("По вашему запросу ничего небыло найдено! Нажмите enter для продолжения!");
             }
 
-            Flights.Sort((a, b) => a.DateAndTimeDepature.CompareTo(b.DateAndTimeDepature));
+            Flights.OrderBy(u => u.DateAndTimeArival);
             Console.ReadKey();
         }
 
