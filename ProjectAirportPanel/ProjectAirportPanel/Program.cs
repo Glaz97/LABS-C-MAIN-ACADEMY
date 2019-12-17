@@ -58,12 +58,12 @@ namespace ProjectAirportPanel
 
             List<Flights> Flights = new List<Flights>();
 
-            Flights.Add(new Flights("Zhytomyr  ", "Kyiv", "Airoport-1", "Boryspil", "UA228-1488", "D", "1D", new DateTime(2019, 12, 15), new DateTime(2019, 12, 15), new DateTime(2019, 12, 14), FlightStatus.InFlight));
-            Flights.Add(new Flights("Cherkasy  ", "Kyiv", "Airoport-2", "Boryspil", "UA227-1488", "F", "2D", new DateTime(2019, 12, 17), new DateTime(2019, 12, 17), new DateTime(2019, 12, 12), FlightStatus.Checkin));
-            Flights.Add(new Flights("Lviv      ", "Kyiv", "Airoport-3", "Boryspil", "UA229-1488", "A", "3D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
-            Flights.Add(new Flights("Kharjiv   ", "Kyiv", "Airoport-4", "Boryspil", "UA222-1488", "C", "4D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Canceled));
-            Flights.Add(new Flights("Odessa    ", "Kyiv", "Airoport-5", "Boryspil", "UA221-1488", "B", "5D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
-            Flights.Add(new Flights("Sumy      ", "Kyiv", "Airoport-6", "Boryspil", "UA225-1488", "G", "6D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
+            Flights.Add(new Flights("Zhytomyr", "Kyiv", "Airoport-1", "Boryspil", "UA228-1488", "D", "1D", new DateTime(2019, 12, 15), new DateTime(2019, 12, 15), new DateTime(2019, 12, 14), FlightStatus.InFlight));
+            Flights.Add(new Flights("Cherkasy", "Kyiv", "Airoport-2", "Boryspil", "UA227-1488", "F", "2D", new DateTime(2019, 12, 17), new DateTime(2019, 12, 17), new DateTime(2019, 12, 12), FlightStatus.Checkin));
+            Flights.Add(new Flights("Lviv", "Kyiv", "Airoport-3", "Boryspil", "UA229-1488", "A", "3D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
+            Flights.Add(new Flights("Kharjiv", "Kyiv", "Airoport-4", "Boryspil", "UA222-1488", "C", "4D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Canceled));
+            Flights.Add(new Flights("Odessa", "Kyiv", "Airoport-5", "Boryspil", "UA221-1488", "B", "5D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
+            Flights.Add(new Flights("Sumy", "Kyiv", "Airoport-6", "Boryspil", "UA225-1488", "G", "6D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), FlightStatus.Delayed));
 
             int exit = 1;
         
