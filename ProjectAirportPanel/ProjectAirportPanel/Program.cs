@@ -287,6 +287,8 @@ namespace ProjectAirportPanel
 
             string numberOfFlight = "";
 
+            Flights.OrderBy(u => u.DateAndTimeArival);
+
             List<Flights> result = Flights.Where(x => x.DateAndTimeDepature.ToString() == SearchArray[1]).ToList();
                 
                 if (result.Count > 0)
