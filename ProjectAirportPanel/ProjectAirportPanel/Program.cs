@@ -281,7 +281,7 @@ namespace ProjectAirportPanel
 
         public static void SearchFirstToTheCityElement(List<Flights> Flights)
         {
-            Console.WriteLine("Введите название аэропорта для перелета и удобную для вас дату через кому, дата должна быть в формате (12.12.2019 0:00:00)");
+            Console.WriteLine("Введите название аэропорта для перелета и удобную для вас дату через кому, дата должна быть в формате (12.12.2019)");
             string SearchString = Console.ReadLine();
             string[] SearchArray = SearchString.Split(',');
 
@@ -289,13 +289,13 @@ namespace ProjectAirportPanel
 
             Flights.OrderBy(u => u.DateAndTimeDepature);
 
-            List<Flights> result = Flights.Where(x => x.DateAndTimeDepature.ToString() == SearchArray[1]).ToList();
+            List<Flights> result = Flights.Where(x => x.DateAndTimeDepature.ToString().Substring(0, 10).Trim(' ') == SearchArray[1]).ToList();
                 
                 if (result.Count > 0)
                 {
                     foreach (var element in result)
                     {
-                        if (element.AiroportArrival.Trim(' ') == SearchArray[0])
+                        if (element.AiroportArrival == SearchArray[0])
                         {
                             numberOfFlight = element.FlightNumber;
                             Console.WriteLine("Ваша строка с номером рейса № - " + numberOfFlight);
