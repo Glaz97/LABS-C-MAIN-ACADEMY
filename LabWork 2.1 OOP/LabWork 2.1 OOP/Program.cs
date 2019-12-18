@@ -210,10 +210,10 @@ namespace LabWork_2._1_OOP
             Console.WriteLine("You can try to do some action with them:");
             Console.WriteLine("Enter the number of action and number of user separated by coma:" + "\n");
 
-            Console.WriteLine("1 - Add book to user booklist");
-            Console.WriteLine("2 - Remove book from user booklist");
-            Console.WriteLine("3 - Watch a short info from some book of user");
-            Console.WriteLine("4 - How much books does the user have?");
+            Console.WriteLine("1,№ - Add book to user booklist");
+            Console.WriteLine("2,№ - Remove book from user booklist");
+            Console.WriteLine("3,№ - Watch a short info from some book of user");
+            Console.WriteLine("4,№ - How much books does the user have?");
             Console.WriteLine("0,0 - Exit from programm?");
         }
     }
