@@ -122,9 +122,11 @@ namespace LabWork_2._1_OOP
                 {
                     int Answer = 1;
 
-                    if (NumberOfUser == null)
+                    if (NumberOfUser == null || NumberOfUser > LibraryUser.Count)
                     {
                         exit = 0;
+                        Console.WriteLine("Eror, the programm is shutting down!");
+                        Console.ReadKey();
                     }
                     else
                     {
