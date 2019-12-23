@@ -50,20 +50,54 @@ namespace Labwork_2._2
 
         static void SelectTheFunction(int option)
         {
+            var box = new Box(30,30,10,10,'*',"Hello PEOPLE!");
+
             if (option == 1)
-            {
-                DrawCubeWithMessage();
+            {           
+                box.DrawCubeWithMessage();
             }
             else if (option == 2)
             {
-                Console.WriteLine("Введите ваше число для вычисления факториала");
-                int number = Convert.ToInt32(CheckForEnterMistake(0));
+                Console.WriteLine("Enter your number");
+                int number = Convert.ToInt32(box.CheckForEnterMistake(0));
 
-                Console.WriteLine("Факториал числа " + number.ToString() + " равен - " + CalculateRecursiveFactorial(number));
+                Console.WriteLine("Factorial of a number " + number.ToString() + " is - " + CalculateRecursiveFactorial(number));
             }
         }
 
-        private static void DrawCubeWithMessage()
+        static long CalculateRecursiveFactorial(int n)
+        {
+            if (n == 0 || n == 1)
+                return 1;
+            else return n * CalculateRecursiveFactorial(n - 1);
+        }
+    }
+
+    class Box
+    {
+        int Left;
+        int Top;
+        int Width;
+        int Height;
+        char Edge;
+        string Message;
+
+        public Box(int Left, int Top, int Width, int Height, char Edge, string Message)
+        {
+            this.Left = Left;
+            this.Top = Top;
+            this.Width = Width;
+            this.Height = Height;
+            this.Edge = Edge;
+            this.Message = Message;
+        }
+
+        private static void DrawTheBox(int Left, int Top, int Width, int Height, char Edge, string Message)
+        {
+            DrawABox(Left, Top, Width, Height, Edge, Message);
+        }
+
+        public void DrawCubeWithMessage()
         {
             Console.WriteLine("Enter coordinate of left position: (integer number)");
             int Left = Convert.ToInt32(CheckForEnterMistake(0));
@@ -84,14 +118,7 @@ namespace Labwork_2._2
             DrawABox(Left, Top, Width, Height, Edge, Message);
         }
 
-        static long CalculateRecursiveFactorial(int n)
-        {
-            if (n == 0 || n == 1)
-            return 1;
-            else return n * CalculateRecursiveFactorial(n - 1);
-        }
-
-        static string CheckForEnterMistake(int option)
+        public string CheckForEnterMistake(int option)
         {
             string ReturnResult = "-1";
 
@@ -152,10 +179,11 @@ namespace Labwork_2._2
                         {
                             continue;
                         }
-                        else if (OutString.Length <= Width - 1 & index > PrintedSymbols) {
+                        else if (OutString.Length <= Width - 1 & index >= PrintedSymbols)
+                        {
                             OutString += s;
                             OutSymbols += 1;
-                            PrintedSymbols +=1;
+                            PrintedSymbols += 1;
                         }
                         index += 1;
                     }
@@ -173,4 +201,5 @@ namespace Labwork_2._2
             }
         }
     }
+
 }
