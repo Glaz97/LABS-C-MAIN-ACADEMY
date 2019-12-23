@@ -63,7 +63,7 @@ namespace Labwork_2._2
             }
         }
 
-        static void DrawCubeWithMessage()
+        private static void DrawCubeWithMessage()
         {
             Console.WriteLine("Enter coordinate of left position: (integer number)");
             int Left = Convert.ToInt32(CheckForEnterMistake(0));
