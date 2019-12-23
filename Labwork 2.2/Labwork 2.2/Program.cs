@@ -92,11 +92,6 @@ namespace Labwork_2._2
             this.Message = Message;
         }
 
-        private static void DrawTheBox(int Left, int Top, int Width, int Height, char Edge, string Message)
-        {
-            DrawABox(Left, Top, Width, Height, Edge, Message);
-        }
-
         public void DrawCubeWithMessage()
         {
             Console.WriteLine("Enter coordinate of left position: (integer number)");
