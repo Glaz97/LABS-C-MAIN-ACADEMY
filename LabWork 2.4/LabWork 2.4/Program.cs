@@ -30,7 +30,6 @@ namespace LabWork_2._4
                     retVal += fullAlfabet[codeIndex];
                 }
             }
-
             return retVal;
         }
 
