@@ -84,7 +84,6 @@ namespace LabWork_2._4
                 }
                 System.Threading.Thread.Sleep(50);
             }
-
             Console.ReadKey();
         }
     }
