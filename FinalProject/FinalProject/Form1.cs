@@ -110,7 +110,7 @@ namespace FinalProject
                     //заливаем грань
                     var gray = (int)(255 * light);
                     brush.Color = Color.FromArgb(gray, gray, gray);
-                    e.Graphics.FillPath(brush, path);
+                    e.Graphics.FillPath(brush, path); 
                     //e.Graphics.DrawPath(Pens.Black, path);//wireframe
                     //e.Graphics.DrawLine(Pens.Red, p.X, p.Y, p.X + n.X, p.Y + n.Y);//normal
 
