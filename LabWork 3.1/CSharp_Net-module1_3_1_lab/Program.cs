@@ -19,7 +19,7 @@ namespace CSharp_Net_module1_3_1_lab
             {
                 if (i % 200 == 0)
                 {
-                    File.WriteAllText(@"D:\Games\numbers.txt", "," + i);
+                    File.WriteAllText(@"D:\Games\numbers.txt", "," + i); 
                 }
                 else
                 {
