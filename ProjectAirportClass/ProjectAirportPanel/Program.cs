@@ -114,11 +114,11 @@ namespace ProjectAirportClass
 
             foreach (var flight in Flights)
             {
-                if (flight.FlightNumber.Trim(' ') == SearchString || flight.DateAndTimeArival.ToString().Trim(' ') == SearchString)
+                if (flight.FlightNumber.Trim(' ') == SearchString || flight.DateAndTimeArival.ToString() == SearchString)
                 {
                     numberOfFlight = flight.FlightNumber;
                 }
-                else if (flight.AiroportArrival.Trim(' ') == SearchString || flight.AiroportDepature.Trim(' ') == SearchString)
+                else if (flight.AiroportArrival.Trim(' ') == SearchString || flight.AiroportDepature == SearchString)
                 {
                     numberOfFlight = flight.FlightNumber;
                 }
