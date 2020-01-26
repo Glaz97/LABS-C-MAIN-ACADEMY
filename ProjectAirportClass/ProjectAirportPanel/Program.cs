@@ -96,7 +96,7 @@ namespace ProjectAirportClass
             }
             if (Flights.Count > 1)
             {
-                Flights.RemoveAt(numberToRemove - 1);
+                Flights.RemoveAt(numberToRemove - 1); 
             }
             else if (Flights.Count == 1)
             {
