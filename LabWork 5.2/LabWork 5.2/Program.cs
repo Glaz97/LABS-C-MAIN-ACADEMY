@@ -45,6 +45,8 @@ namespace LabWork_5._2
 
             Student[] students = new Student[] { student1, student2 };
 
+            //БИНАРНЫЙ вариант
+
             BinaryFormatter formatter = new BinaryFormatter();
 
             using (FileStream fs = new FileStream("students.dat", FileMode.OpenOrCreate))
@@ -63,6 +65,8 @@ namespace LabWork_5._2
                 }
             }
 
+            //XML вариант
+
             XmlSerializer formatter2 = new XmlSerializer(typeof(Student[]));
 
             using (FileStream fs2 = new FileStream("students.xml", FileMode.OpenOrCreate))
@@ -80,6 +84,8 @@ namespace LabWork_5._2
                 $" --- Код: {p.PostCode}");
                 }
             }
+
+            //SOAP вариант
 
             SoapFormatter formatter3 = new SoapFormatter();
 
