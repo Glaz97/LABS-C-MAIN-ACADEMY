@@ -83,9 +83,12 @@ namespace ProjectAirportClass
                     Console.WriteLine("-----------------------------------------------------" +
                     "--------------------------------------------------------------------------------");
                     Console.ForegroundColor = ColorOfText(flight.Value.Status);
-                    Console.WriteLine(flight.Value.CityDepature + "|" + flight.Value.CityArrival + "|" + flight.Value.AiroportDepature + "|" +
-                    flight.Value.AiroportArrival + "|" + flight.Value.FlightNumber + "|" + flight.Value.Terminal +
-                    "|" + flight.Value.TimeExpected + "|" + flight.Value.DateAndTimeArival + "|" + flight.Value.DateAndTimeDepature + "|" + flight.Value.Status);
+
+                    var elem = Flights.Values.Select(x => x).Where(x => x.FlightNumber == flight.Value.FlightNumber).FirstOrDefault();
+
+                    Console.WriteLine(string.Join("|", elem.CityDepature,elem.CityArrival, elem.AiroportDepature, elem.AiroportArrival,
+                    elem.FlightNumber, elem.Terminal, elem.TimeExpected,elem.DateAndTimeArival, elem.DateAndTimeDepature, flight.Value.Status));
+
                     Console.ForegroundColor = ConsoleColor.White;
                 }
             }
@@ -111,35 +114,35 @@ namespace ProjectAirportClass
             return Color;
         }
 
-        public static int RunTheVariant(int option, SortedList<string, Airoport> Flights)
+        public static int RunTheVariant(FlightsActions.NameOfActions option, SortedList<string, Airoport> Flights)
         {
             int Answer = 1;
 
-            if (option == (int)FlightsActions.NameOfActions.Exit)
+            if (option == FlightsActions.NameOfActions.Exit)
             {
                 Answer = 0;
             }
-            else if (option == (int)FlightsActions.NameOfActions.AddElement)
+            else if (option == FlightsActions.NameOfActions.AddElement)
             {
                 FlightsActions.AddElement(Flights);
             }
-            else if (option == (int)FlightsActions.NameOfActions.ChangeElement)
+            else if (option == FlightsActions.NameOfActions.ChangeElement)
             {
                 FlightsActions.ChangeElement(Flights);
             }
-            else if (option == (int)FlightsActions.NameOfActions.DeleteElement)
+            else if (option == FlightsActions.NameOfActions.DeleteElement)
             {
                 FlightsActions.DeleteElement(Flights);
             }
-            else if (option == (int)FlightsActions.NameOfActions.SearchElement)
+            else if (option == FlightsActions.NameOfActions.SearchElement)
             {
                 FlightsActions.SearchElement(Flights);
             }
-            else if (option == (int)FlightsActions.NameOfActions.SearchFirstToTheCityElement)
+            else if (option == FlightsActions.NameOfActions.SearchFirstToTheCityElement)
             {
                 FlightsActions.SearchFirstToTheCityElement(Flights);
             }
-            else if (option == (int)FlightsActions.NameOfActions.WriteAlarm)
+            else if (option == FlightsActions.NameOfActions.WriteAlarm)
             {
                 WriteAlarm();
             }
@@ -223,10 +226,8 @@ namespace ProjectAirportClass
                 Console.WriteLine("Введите целое число от 1 до " + Flights.Count.ToString() + '\n');
                 numberToRemove = Convert.ToInt32(Console.ReadLine());
             }
-            if (Flights.Count > 1)
-            {
-                Flights.RemoveAt(numberToRemove - 1);
-            }
+
+            Flights.RemoveAt(numberToRemove - 1);
         }
 
         public static void SearchElement(SortedList<string, Airoport> Flights)
@@ -308,21 +309,13 @@ namespace ProjectAirportClass
                 Console.WriteLine("Введите 6 - Вывод срочной информации на панель!;");
                 Console.WriteLine("Введите 0 - Для выхода из программы.");
 
-                int option = 0;
+                int.TryParse(Console.ReadLine(), out int option);
 
-                try
-                {
-                    int.TryParse(Console.ReadLine(), out option);
-                }
-                catch
-                {
-                    Console.WriteLine("Ошибка при вводе. Выход из программы.");
-                    Console.ReadKey();
-                }
+                FlightsActions.NameOfActions myEnum = (FlightsActions.NameOfActions)Enum.Parse(typeof(FlightsActions.NameOfActions), option.ToString());
 
-                if (option >= 0 & option <= 6)
+                if (myEnum != FlightsActions.NameOfActions.Exit)
                 {
-                    int Answer = BaseFunctions.RunTheVariant(option, Flights);
+                    int Answer = BaseFunctions.RunTheVariant(myEnum, Flights);
 
                     if (Answer == (int)FlightsActions.NameOfActions.Exit)
                     {
