@@ -73,24 +73,21 @@ namespace ProjectAirportClass
             Console.WriteLine("Расписание авиаперелетов: ");
             Console.WriteLine("--------------------------------------------------------" +
             "-----------------------------------------------------------------------------");
-            Console.WriteLine("| Departure | Arrival | Air. Arriv. | Air. Depar. | Flight № | Terminal | Gate | Time Expected | Time Arival | Time Depature |"
-               + "Status|");
+            Console.WriteLine(string.Join(" | ","Departure","Arrival","Air. Arriv.","Air. Depar.","Flight №","Terminal","Gate",
+            "Time Expected","Time Arival","Time Depature","Status"));
 
             foreach (var flight in Flights)
             {
-                if (!string.IsNullOrEmpty(flight.Value.CityArrival))
-                {
-                    Console.WriteLine("-----------------------------------------------------" +
-                    "--------------------------------------------------------------------------------");
-                    Console.ForegroundColor = ColorOfText(flight.Value.Status);
+                Console.WriteLine("-----------------------------------------------------" +
+                "--------------------------------------------------------------------------------");
+                Console.ForegroundColor = ColorOfText(flight.Value.Status);
 
-                    var elem = Flights.Values.Select(x => x).Where(x => x.FlightNumber == flight.Value.FlightNumber).FirstOrDefault();
+                var elem = Flights.Values.Select(x => x).Where(x => x.FlightNumber == flight.Value.FlightNumber).FirstOrDefault();
 
-                    Console.WriteLine(string.Join("|", elem.CityDepature,elem.CityArrival, elem.AiroportDepature, elem.AiroportArrival,
-                    elem.FlightNumber, elem.Terminal, elem.TimeExpected,elem.DateAndTimeArival, elem.DateAndTimeDepature, flight.Value.Status));
+                Console.WriteLine(string.Join("|", elem.CityDepature, elem.CityArrival, elem.AiroportDepature, elem.AiroportArrival,
+                elem.FlightNumber, elem.Terminal, elem.TimeExpected, elem.DateAndTimeArival, elem.DateAndTimeDepature, flight.Value.Status));
 
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
