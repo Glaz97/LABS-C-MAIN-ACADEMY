@@ -308,11 +308,11 @@ namespace ProjectAirportClass
 
                 int.TryParse(Console.ReadLine(), out int option);
 
-                FlightsActions.NameOfActions myEnum = (FlightsActions.NameOfActions)Enum.Parse(typeof(FlightsActions.NameOfActions), option.ToString());
+                FlightsActions.NameOfActions EnteredEnum = (FlightsActions.NameOfActions)Enum.Parse(typeof(FlightsActions.NameOfActions), option.ToString());
 
-                if (myEnum != FlightsActions.NameOfActions.Exit)
+                if (EnteredEnum != FlightsActions.NameOfActions.Exit)
                 {
-                    int Answer = BaseFunctions.RunTheVariant(myEnum, Flights);
+                    int Answer = BaseFunctions.RunTheVariant(EnteredEnum, Flights);
 
                     if (Answer == (int)FlightsActions.NameOfActions.Exit)
                     {
