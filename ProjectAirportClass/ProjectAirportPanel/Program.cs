@@ -113,11 +113,9 @@ namespace ProjectAirportClass
 
         public static int RunTheVariant(FlightsActions.NameOfActions option, SortedList<string, Airoport> Flights)
         {
-            int Answer = 1;
-
             if (option == FlightsActions.NameOfActions.Exit)
             {
-                Answer = 0;
+                 return 0;
             }
             else if (option == FlightsActions.NameOfActions.AddElement)
             {
@@ -144,7 +142,7 @@ namespace ProjectAirportClass
                 WriteAlarm();
             }
 
-            return Answer;
+            return 1;
         }
     }
 
@@ -232,13 +230,12 @@ namespace ProjectAirportClass
             Console.WriteLine("Введите строку для поиска данных (название аэропорта или номер рейса или время прибытия)");
             string SearchString = Console.ReadLine();
 
-            var Array1 = Flights.Values.Where(x => x.FlightNumber == SearchString || x.DateAndTimeArival.ToString() == SearchString);
-            var Array2 = Flights.Values.Where(x => x.AiroportArrival == SearchString || x.AiroportDepature == SearchString);
+            var Array = Flights.Values.Where(x => x.FlightNumber == SearchString || x.DateAndTimeArival.ToString() == SearchString || 
+                x.AiroportArrival == SearchString || x.AiroportDepature == SearchString);
 
-            if (Array1.Count() > 0 || Array2.Count() > 0)
+            if (Array.Count() > 0)
             {
-                var FlightNumber = Array1.Count() > 0 ? Array1.FirstOrDefault().FlightNumber : Array2.FirstOrDefault().FlightNumber;
-                Console.WriteLine("Ваша строка с номером рейса № - " + FlightNumber);
+                Console.WriteLine("Ваша строка с номером рейса № - " + Array.First().FlightNumber);
             }
             else
             {
@@ -257,7 +254,7 @@ namespace ProjectAirportClass
             var Date = DateTime.Parse(Console.ReadLine());
 
             var result = Flights.Values.Where(x => x.DateAndTimeDepature == Date
-            && x.AiroportArrival == AiroportArrival).ToList();
+                && x.AiroportArrival == AiroportArrival).ToList();
 
             foreach (var element in result)
             {
@@ -312,9 +309,7 @@ namespace ProjectAirportClass
 
                 if (EnteredEnum != FlightsActions.NameOfActions.Exit)
                 {
-                    int Answer = BaseFunctions.RunTheVariant(EnteredEnum, Flights);
-
-                    if (Answer == (int)FlightsActions.NameOfActions.Exit)
+                    if (BaseFunctions.RunTheVariant(EnteredEnum, Flights) == (int)FlightsActions.NameOfActions.Exit)
                     {
                         break;
                     }
