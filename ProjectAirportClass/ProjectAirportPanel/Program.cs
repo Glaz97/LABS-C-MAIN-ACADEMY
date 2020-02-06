@@ -20,9 +20,9 @@ namespace ProjectAirportClass
         public DateTime DateAndTimeArival;
         public DateTime DateAndTimeDepature;
         public FlightStatus Status;
-        public SortedList<string, Passenger> ListOfPassengers;
+        public List<Passenger> ListOfPassengers;
 
-        public Airoport(string CityDepature, string CityArrival, string AiroportDepature, string AiroportArrival, string FlightNumber, string Terminal, string Gate, DateTime TimeExpected, DateTime DateAndTimeArival, DateTime DateAndTimeDepature, FlightStatus Status, SortedList<string, Passenger> ListOfPassengers)
+        public Airoport(string CityDepature, string CityArrival, string AiroportDepature, string AiroportArrival, string FlightNumber, string Terminal, string Gate, DateTime TimeExpected, DateTime DateAndTimeArival, DateTime DateAndTimeDepature, FlightStatus Status, List<Passenger> ListOfPassengers)
         {
             this.CityArrival = CityArrival;
             this.CityDepature = CityDepature;
@@ -145,7 +145,7 @@ namespace ProjectAirportClass
             }
             else if (option == FlightsActions.NameOfActions.AddPassengerToTheFlight)
             {
-                WriteAlarm();
+                FlightsActions.AddPassengerToTheFlight(Flights);
             }
             else if (option == FlightsActions.NameOfActions.SearchPassenger)
             {
@@ -157,7 +157,7 @@ namespace ProjectAirportClass
             }
             else if (option == FlightsActions.NameOfActions.WatchThePassengerList)
             {
-                WriteAlarm();
+                FlightsActions.WatchThePassengerList(Flights);
             }
 
             return 1;
@@ -216,7 +216,7 @@ namespace ProjectAirportClass
                 Console.WriteLine("Добавить пассажиров к рейсу - нажмите 1");
 
                 int.TryParse(Console.ReadLine(), out int option);
-                var PassengersList = new SortedList<string, Passenger>();
+                var PassengersList = new List<Passenger>();
 
                 if (option == 1)
                 {
@@ -306,21 +306,38 @@ namespace ProjectAirportClass
             Console.ReadKey();
         }
 
-        public static void SearchForPassenger (SortedList<string, Airoport> Flights)
+        public static void SearchForPassenger(SortedList<string, Airoport> Flights)
         {
             Console.WriteLine("Введите строку для поиска данных (номер рейса или другое ключевое поле)");
             string SearchString = Console.ReadLine();
 
-            var Array = Flights.Values.Where(g => g.FlightNumber == SearchString.ToString()).Select(x => x.ListOfPassengers).Select(c => c.Values);
+            var ArrayKeys = Flights.Values.Where(g => g.FlightNumber == SearchString).Select(x => x.ListOfPassengers);
+            var ArrayValues = Flights.Values.Select(x => x.ListOfPassengers.Where(g => g.PassportNumber == SearchString
+                || g.FirstName == SearchString | g.SecondName == SearchString).Select(z => z));
 
-            foreach (var element in Array)
+            if (ArrayKeys.Count() > 0)
             {
-                var test = element;
+                foreach (var passanger in ArrayKeys.First())
+                {
+                    Console.WriteLine("Ваша пассажир найден - " + passanger.FirstName + " " + passanger.SecondName +
+                       " " + passanger.PassportNumber + ", номер рейса - " + SearchString);
+                }
+
+                Console.ReadKey();
             }
-
-            if (Array.Count() > 0)
+            else if (ArrayValues.Count() > 0)
             {
-               //Console.WriteLine("Ваша строка с номером рейса № - " + Array.First().FlightNumber);
+                foreach (var ListPassanger in ArrayValues)
+                {
+                    foreach (var passanger in ListPassanger)
+                    {
+                        var FlightNumber = Flights.Values.Where(x => x.ListOfPassengers.Contains(passanger)).Select(z => z.FlightNumber);
+                            Console.WriteLine("Ваш пассажир найден - " + passanger.FirstName + " " + passanger.SecondName + " " +
+                            passanger.PassportNumber + ", номер рейса - " + FlightNumber);
+                    }
+                }
+
+                Console.ReadKey();
             }
             else
             {
@@ -328,7 +345,23 @@ namespace ProjectAirportClass
             }
         }
 
-        public static SortedList<string, Passenger> AddPassengers(SortedList<string, Airoport> Flights, SortedList<string, Passenger> Passangers)
+        public static void WatchThePassengerList(SortedList<string, Airoport> Flights)
+        {
+            var ListArrayOfPassengers = Flights.Values.Select(z => z.ListOfPassengers).Where(x => x.Count > 0);
+
+            foreach (var ListElement in ListArrayOfPassengers)
+            {
+                foreach (var passanger in ListElement)
+                {
+                    var Flight = Flights.Values.Select(z => z).Where(z => z.ListOfPassengers.Select(d => d).Where(x => x.PassportNumber == passanger.PassportNumber).Count() > 0).First();
+                    Console.WriteLine("Пассажир - " + passanger.FirstName + " " + passanger.SecondName + " "
+                    + passanger.PassportNumber + " | " + Flight.FlightNumber + " | ворота - " + Flight.Gate);
+                }
+            }
+            Console.ReadKey();
+        }
+
+        public static List<Passenger> AddPassengers(SortedList<string, Airoport> Flights, List<Passenger> Passangers)
         {
             Console.WriteLine("Введите 8 элементов строки перелета: ");
 
@@ -358,10 +391,13 @@ namespace ProjectAirportClass
                 var Sex = Passenger.SexValue.Women;
                 Enum.TryParse(PassengersArray[5].ToString(), out Sex);
 
-                Passangers.Add(PassengersArray[7].ToString(), new Passenger(
-                PassengersArray[0].ToString(), PassengersArray[1].ToString(), PassengersArray[2].ToString(),
-                PassengersArray[3].ToString(), DateTime.Parse(PassengersArray[4].ToString()), Sex,
-                ClassOfFlight));
+                var NewPassanger = new Passenger(PassengersArray[0].ToString(), PassengersArray[1].ToString(), PassengersArray[2].ToString(),
+                    PassengersArray[3].ToString(), DateTime.Parse(PassengersArray[4].ToString()), Sex, ClassOfFlight);
+
+                var ListOfPassangers = Flights.Values.Where(z => z.FlightNumber == PassengersArray[7].ToString()).
+                    Select(x => x.ListOfPassengers);
+
+                ListOfPassangers.First().Add(NewPassanger);
             }
             catch
             {
@@ -370,6 +406,65 @@ namespace ProjectAirportClass
             }
 
             return Passangers;
+        }
+
+        public static void AddPassengerToTheFlight(SortedList<string, Airoport> Flights)
+        {
+            Console.WriteLine("Введите 8 элементов строки перелета: ");
+
+            var ArrayOfFields = new string[]{ "имя", "фамилию", "национальность", "серия и номер пасспорта", "дата рождения",
+            "пол (0 - женщина, 1 - мужчина)", "номер класса рейса", "номер рейса"};
+
+            var PassengersArray = new ArrayList();
+
+            foreach (var explanation in ArrayOfFields)
+            {
+                BaseFunctions.ReWriteFlightStatuses(Flights);
+                Console.WriteLine("\n" + "Введите " + explanation);
+                PassengersArray.Add(Console.ReadLine());
+            }
+
+            try
+            {
+                if (Flights.Values.Where(x => x.FlightNumber == PassengersArray[7].ToString()).Count() == 0)
+                {
+                    Console.WriteLine("Ошибка, не найден рейс с указанным вами номером рейса");
+                    throw new NotImplementedException();
+                }
+
+                var ClassOfFlight = Passenger.ClassOfFlight.Econom;
+                Enum.TryParse(PassengersArray[6].ToString(), out ClassOfFlight);
+
+                var Sex = Passenger.SexValue.Women;
+                Enum.TryParse(PassengersArray[5].ToString(), out Sex);
+
+                var Passanger = new SortedList<string, Passenger>();
+
+                var NewPassanger = new Passenger(PassengersArray[0].ToString(), PassengersArray[1].ToString(), PassengersArray[2].ToString(),
+                PassengersArray[3].ToString(), DateTime.Now, Sex, ClassOfFlight);
+
+                var ListOfPassangers = Flights.Values.Where(z => z.FlightNumber == PassengersArray[7].ToString()).
+                    Select(x => x.ListOfPassengers);
+
+                ListOfPassangers.First().Add(NewPassanger);
+            }
+            catch
+            {
+                Console.WriteLine("Возникла ошибка при попытке обработки ваших данных! Повторите ввод заново!");
+                Console.ReadKey();
+            }
+        }
+
+        public static List<Passenger> CreateNewListOfPasssangers(Random rnd)
+        {
+            var ListOfPassengers = new List<Passenger>
+            {
+                new Passenger("Valentyn", "Pupkin", "Russia", "FG" + rnd.Next(1234,2345), new DateTime(1997,08,29), Passenger.SexValue.Man, Passenger.ClassOfFlight.Business),
+                new Passenger("Evdokiya", "Pupkina", "Russia", "FG" + rnd.Next(1765,2123), new DateTime(1997,07,29), Passenger.SexValue.Women, Passenger.ClassOfFlight.Business),
+                new Passenger("Feodisyu", "Pupkin", "Russia", "FG" + rnd.Next(1456,2675), new DateTime(1997,06,29), Passenger.SexValue.Man, Passenger.ClassOfFlight.Business)
+            };
+
+            return ListOfPassengers;
         }
     }
 
@@ -382,7 +477,6 @@ namespace ProjectAirportClass
         public DateTime DateOfBirth;
         public SexValue Sex;
         public ClassOfFlight FlightClass;
-        public string FlightNumber;
 
         public enum SexValue
         {
@@ -403,6 +497,7 @@ namespace ProjectAirportClass
             this.Nationality = Nationality;
             this.PassportNumber = PassportNumber;
             this.Sex = Sex;
+            this.DateOfBirth = DateOfBirth;
             this.FlightClass = FlightClass;
         }
     }
@@ -415,22 +510,15 @@ namespace ProjectAirportClass
             Console.WindowWidth = 150;
             Console.ForegroundColor = ConsoleColor.White;
 
-            var ListOfPassengers = new List<Passenger>
-            {
-                new Passenger("Vasya", "Pupkin", "Russia", "FG2281488", new DateTime(29081977), Passenger.SexValue.Man, Passenger.ClassOfFlight.Business),
-                new Passenger("Maria", "Pupkina", "Russia", "FG2291488", new DateTime(29081977), Passenger.SexValue.Women, Passenger.ClassOfFlight.Business),
-                new Passenger("Feodisyu", "Pupkin", "Russia", "FG2301488", new DateTime(29081977), Passenger.SexValue.Man, Passenger.ClassOfFlight.Business)
-            };
-
             Random rnd = new Random();
 
             var Flights = new SortedList<string, Airoport>
             {
-                {"UA228-1488", new Airoport("Zhytomyr", "Kyiv", "Airoport-1", "Boryspil", "UA228-1488", "D", "1D", new DateTime(2019, 12, 15), new DateTime(2019, 12, 15), new DateTime(2019, 12, 14), Airoport.FlightStatus.InFlight,new SortedList<string, Passenger>{ { "UA228-1488", ListOfPassengers[rnd.Next(0, ListOfPassengers.Count)] } }) },
-                {"UA229-1488", new Airoport("Lviv", "Kyiv", "Airoport-3", "Boryspil", "UA229-1488", "A", "3D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), Airoport.FlightStatus.Delayed,new SortedList<string, Passenger>{ { "UA229-1488", ListOfPassengers[rnd.Next(0, ListOfPassengers.Count)] } }) },
-                {"UA222-1488", new Airoport("Kharjiv", "Kyiv", "Airoport-4", "Boryspil", "UA222-1488", "C", "4D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), Airoport.FlightStatus.Canceled,new SortedList<string, Passenger>{ { "UA222-1488", ListOfPassengers[rnd.Next(0, ListOfPassengers.Count)] } }) },
-                {"UA221-1488", new Airoport("Odessa", "Kyiv", "Airoport-5", "Boryspil", "UA221-1488", "B", "5D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), Airoport.FlightStatus.Delayed,new SortedList<string, Passenger>{ { "UA221-1488", ListOfPassengers[rnd.Next(0, ListOfPassengers.Count)] } })},
-                {"UA225-1488", new Airoport("Sumy", "Kyiv", "Airoport-6", "Boryspil", "UA225-1488", "G", "6D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), Airoport.FlightStatus.Delayed,new SortedList<string, Passenger>{ { "UA225-1488", ListOfPassengers[rnd.Next(0, ListOfPassengers.Count)] } })}
+                {"UA228-1488", new Airoport("Zhytomyr", "Kyiv", "Airoport-1", "Boryspil", "UA228-1488", "D", "1D", new DateTime(2019, 12, 15), new DateTime(2019, 12, 15), new DateTime(2019, 12, 14), Airoport.FlightStatus.InFlight, FlightsActions.CreateNewListOfPasssangers(rnd) ) },
+                {"UA229-1488", new Airoport("Lviv", "Kyiv", "Airoport-3", "Boryspil", "UA229-1488", "A", "3D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), Airoport.FlightStatus.Delayed, FlightsActions.CreateNewListOfPasssangers(rnd) ) },
+                {"UA222-1488", new Airoport("Kharjiv", "Kyiv", "Airoport-4", "Boryspil", "UA222-1488", "C", "4D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), Airoport.FlightStatus.Canceled, FlightsActions.CreateNewListOfPasssangers(rnd)  ) },
+                {"UA221-1488", new Airoport("Odessa", "Kyiv", "Airoport-5", "Boryspil", "UA221-1488", "B", "5D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), Airoport.FlightStatus.Delayed, FlightsActions.CreateNewListOfPasssangers(rnd) )},
+                {"UA225-1488", new Airoport("Sumy", "Kyiv", "Airoport-6", "Boryspil", "UA225-1488", "G", "6D", new DateTime(2019, 12, 16), new DateTime(2019, 12, 16), new DateTime(2019, 12, 13), Airoport.FlightStatus.Delayed, FlightsActions.CreateNewListOfPasssangers(rnd) )}
             };
 
             while (true)
@@ -443,7 +531,7 @@ namespace ProjectAirportClass
                     "Введите 4 - Поиск по элементу строки перелета;", "Введите 5 - Поиск ближайшего перелета в определенный Город;",
                     "Введите 6 - Вывод срочной информации на панель!;", "Введите 7 - Добавить пассажира на рейс;",
                     "Введите 8 - Поиск пассажира по ключевым значениям;", "Введите 9 - Вывод информации о ценах классов перелетов;",
-                    "Введите 10 - Вывод списка пассажиров по номеру рейса;", "Введите 0 - Для выхода из программы."));
+                    "Введите 10 - Вывод списка пассажиров;", "Введите 0 - Для выхода из программы."));
 
                 int.TryParse(Console.ReadLine(), out int option);
 
