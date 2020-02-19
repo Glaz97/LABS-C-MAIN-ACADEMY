@@ -62,12 +62,13 @@ namespace Part_2_LabWork_1._2
         public static void SaveTrace()
         {
             //сохранение данных в Trace file
+            Console.WriteLine();
 
-            var consoleTracer = new ConsoleTraceListener();
-
-            consoleTracer.Name = "mainConsoleTracer";
-
-            consoleTracer.WriteLine(GetDescriptionOfAttributes(new UniversalAirplane()) + " " + consoleTracer.Name );
+            Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+            Trace.AutoFlush = true;
+            Trace.Indent();
+            Trace.WriteLine(GetDescriptionOfAttributes(new UniversalAirplane()));
+            Trace.Unindent();
         }
 
         public static void EventLogging()
@@ -84,7 +85,7 @@ namespace Part_2_LabWork_1._2
     {
         static void Main(string[] args)
         {
-            CheckSaveTrace.GetDescriptionOfAttributes(new UniversalAirplane());
+            CheckSaveTrace.CheckClassAtributes(new UniversalAirplane());
 
             CheckSaveTrace.SaveTrace();
 
