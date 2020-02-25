@@ -639,7 +639,7 @@ namespace ProjectAirportClass
     {
         static void Main(string[] args)
         {
-            Console.WindowHeight = 29;
+            Console.WindowHeight = 30;
             Console.WindowWidth = 135; 
             Console.ForegroundColor = ConsoleColor.White;
 
