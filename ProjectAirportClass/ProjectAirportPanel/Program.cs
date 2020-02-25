@@ -640,7 +640,7 @@ namespace ProjectAirportClass
         static void Main(string[] args)
         {
             Console.WindowHeight = 30;
-            Console.WindowWidth = 135;
+            Console.WindowWidth = 135; 
             Console.ForegroundColor = ConsoleColor.White;
 
             Random rnd = new Random();
