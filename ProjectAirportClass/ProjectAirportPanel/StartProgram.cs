@@ -1,6 +1,7 @@
 ﻿using ProjectAirportPanel;
 using System;
 using System.Collections.Generic;
+using static ProjectAirportPanel.BaseFunctions;
 
 namespace ProjectAirportClass
 {
@@ -24,7 +25,9 @@ namespace ProjectAirportClass
 
             while (true)
             {
-                BaseFunctions.ReWriteFlightStatuses(flights);
+                DelegateFlightStatus flightStatus = ReWriteFlightStatuses;
+
+                flightStatus(flights);
 
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n" + string.Join("\n", "Меню действий:", "Введите 1 - Добавить элемент перелета;",
@@ -47,7 +50,7 @@ namespace ProjectAirportClass
                 }
                 else if (option >= 0 && Enum.GetNames(typeof(NameOfActions)).Length - 1 >= option)
                 {
-                    BaseFunctions.RunTheVariant(enteredEnum, flights);
+                    RunTheVariant(enteredEnum, flights);
                 }
             }
         }

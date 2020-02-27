@@ -6,6 +6,10 @@ namespace ProjectAirportPanel
 {
     public class BaseFunctions
     {
+        public delegate void DelegateFlightStatus(SortedList<string, Airoport> flights);
+
+        public static event DelegateFlightStatus FlightEvent;
+
         public static void WriteAlarm()
         {
             Console.WriteLine("Введите любую строку для срочного оповещения!");
@@ -79,6 +83,7 @@ namespace ProjectAirportPanel
             else if (option == NameOfActions.ChangeElement)
             {
                 FlightsActions.ChangeElement(flights);
+                FlightEvent?.Invoke(flights);
             }
             else if (option == NameOfActions.DeleteElement)
             {
