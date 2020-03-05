@@ -25,7 +25,7 @@ namespace Part_2_LabWork_2._1
                     {
                         Console.WriteLine("Необходимо вести цифру или ввести Q для выхода!");
                     }
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace Part_2_LabWork_2._1
                         {
                             Console.WriteLine("Необходимо вести цифру или ввести w для выхода!");
                         }
-                        Thread.Sleep(1000);
+                        Thread.Sleep(500);
                     }
                 }
                 catch
@@ -65,9 +65,8 @@ namespace Part_2_LabWork_2._1
         {
             while (true)
             {
-                ConsoleKeyInfo pressed;
-                pressed = Console.ReadKey();
-                Console.WriteLine("\n" + "Нажата клавиша: " + pressed.KeyChar);
+                Console.WriteLine("\n" + "Нажата клавиша: " + Console.ReadKey().KeyChar);
+                //Console.SetCursorPosition(0,Console.CursorTop-2);
             }
         }
     }
