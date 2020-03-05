@@ -5,8 +5,19 @@ namespace Part_2_LabWork_2._1
 {
     public class ThreadManipulator
     {
+        #region ОкоянныйКод
+        const System.Runtime.InteropServices.CharSet charSet = System.Runtime.InteropServices.CharSet.Unicode;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = charSet)]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = charSet)]
+        static extern int SendMessage(IntPtr hWnd, int uMsg, int wParam, string lParam);
+        #endregion ОкоянныйКод
+
         private static readonly ConsoleKey Key;
         private static readonly object block = new object();
+        public static int EnteredNumber;
 
         public static void AddingOne(object EnteredNumber)
         {
@@ -24,6 +35,7 @@ namespace Part_2_LabWork_2._1
                     catch
                     {
                         Console.WriteLine("Необходимо вести цифру или ввести Q для выхода!");
+                        break;
                     }
                     Thread.Sleep(500);
                 }
@@ -50,6 +62,7 @@ namespace Part_2_LabWork_2._1
                         catch
                         {
                             Console.WriteLine("Необходимо вести цифру или ввести w для выхода!");
+                            break;
                         }
                         Thread.Sleep(500);
                     }
@@ -65,8 +78,11 @@ namespace Part_2_LabWork_2._1
         {
             while (true)
             {
-                Console.WriteLine("\n" + "Нажата клавиша: " + Console.ReadKey().KeyChar);
-                //Console.SetCursorPosition(0,Console.CursorTop-2);
+                ConsoleKeyInfo EnteredNumber = Console.ReadKey();
+                Console.Clear();
+                Console.WriteLine("Нажата клавиша: " + EnteredNumber.KeyChar);
+                foreach (char sym in EnteredNumber.KeyChar.ToString())
+                    SendMessage(FindWindow("ConsoleWindowClass", Console.Title), 0x0102, sym, null);
             }
         }
     }
@@ -81,12 +97,15 @@ namespace Part_2_LabWork_2._1
     {
         static void Main(string[] args)
         {
+            //Данный поток мониторит ввод символов в консоль на протяжении выполнения главного потока
             Thread myThread3 = new Thread(new ThreadStart(ThreadManipulator.Stop));
             myThread3.IsBackground = true;
             myThread3.Start();
 
+            //Два потока, в которых выполняется деление рандомного числа на введенное число по циклу
             Thread myThread = new Thread(new ParameterizedThreadStart(ThreadManipulator.AddingOne));
             myThread.Start(Console.ReadLine());
+
             Thread myThread1 = new Thread(new ParameterizedThreadStart(ThreadManipulator.AddingOne));
             myThread1.Start(Console.ReadLine());
 
@@ -96,6 +115,8 @@ namespace Part_2_LabWork_2._1
                 CountOfLoops = Console.ReadLine()
             };
 
+            //Данный поток, в котором выполняется деление рандомного числа на введенное число по циклу
+            //значение введенного числа и количества итераций передаеться в объекте класса counter
             Thread myThread2 = new Thread(new ParameterizedThreadStart(ThreadManipulator.AddingCustomValue));
             myThread2.Start(counter);
 
