@@ -86,10 +86,10 @@ namespace Part_2_LabWork_2._1
             myThread3.IsBackground = true;
             myThread3.Start();
 
-            //Thread myThread = new Thread(new ParameterizedThreadStart(ThreadManipulator.AddingOne));
-            //myThread.Start(Console.ReadLine());
-            //Thread myThread1 = new Thread(new ParameterizedThreadStart(ThreadManipulator.AddingOne));
-            //myThread1.Start(Console.ReadLine());
+            Thread myThread = new Thread(new ParameterizedThreadStart(ThreadManipulator.AddingOne));
+            myThread.Start(Console.ReadLine());
+            Thread myThread1 = new Thread(new ParameterizedThreadStart(ThreadManipulator.AddingOne));
+            myThread1.Start(Console.ReadLine());
 
             Counter counter = new Counter
             {
