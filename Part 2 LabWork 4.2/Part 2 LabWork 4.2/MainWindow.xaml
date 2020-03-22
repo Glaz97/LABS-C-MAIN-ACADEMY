@@ -15,6 +15,6 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="ButtonNew" Background="Red" Content="OPEN IMAGE" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="105" FontWeight="Bold" Height="19" Grid.ColumnSpan="2" MouseMove="ButtonNew_MouseMove" />
         <DataGrid x:Name="DataBaseGrid" HorizontalAlignment="Left" Height="376" Margin="10,34,0,0" VerticalAlignment="Top" Width="774" Grid.ColumnSpan="4" FontFamily="Times New Roman" FontSize="14" RowEditEnding="DataBaseGrid_RowEditEnding"/>
-        <Button x:Name="SaveButton" Content="Button" Grid.Column="3" HorizontalAlignment="Left" Margin="373.094,10,0,0" VerticalAlignment="Top" Width="75" MouseMove="SaveButton_MouseMove"/>
+        <Button x:Name="SaveButton" Background="Red" Content="SAVE THE DATA" Grid.Column="3" HorizontalAlignment="Left" Margin="411.094,10,0,0" VerticalAlignment="Top" Width="94" MouseMove="SaveButton_MouseMove"/>
     </Grid>
 </Window>

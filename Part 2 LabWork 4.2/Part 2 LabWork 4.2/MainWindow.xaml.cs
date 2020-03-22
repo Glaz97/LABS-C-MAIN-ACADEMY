@@ -193,6 +193,14 @@ namespace Part_2_LabWork_4._2
                     db.SaveChanges();
                 }
             }
+
+            foreach (var element in TableDataGridCustomers)
+            {
+                element.IsModified = false;
+            }
+
+            DataBaseGrid.ItemsSource = null;
+            DataBaseGrid.ItemsSource = TableDataGridCustomers;
         }
 
         private void DataBaseGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
