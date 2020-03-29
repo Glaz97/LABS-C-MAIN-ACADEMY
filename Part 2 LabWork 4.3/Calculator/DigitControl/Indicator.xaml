@@ -1,0 +1,26 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"             
+             xmlns:digitControl="clr-namespace:Calculator.DigitControl"
+             x:Class="Calculator.DigitControl.Indicator" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+
+        <digitControl:SevenSegmentControl x:Name="Zero" HorizontalAlignment="Left" Margin="146,14,0,149" Width="22" />
+        <digitControl:SevenSegmentControl x:Name="One" HorizontalAlignment="Left" Margin="126,14,0,149" Width="22" />
+        <digitControl:SevenSegmentControl x:Name="Two" HorizontalAlignment="Left" Margin="106,14,0,149" Width="22" />
+        <digitControl:SevenSegmentControl x:Name="Three" HorizontalAlignment="Left" Margin="86,14,0,149" Width="22" />
+        <digitControl:SevenSegmentControl x:Name="Four" HorizontalAlignment="Left" Margin="66,14,0,149" Width="22" />
+        <digitControl:SevenSegmentControl x:Name="Five" HorizontalAlignment="Left" Margin="46,14,0,149" Width="22" />
+        <digitControl:SevenSegmentControl x:Name="Six" HorizontalAlignment="Left" Margin="26,14,0,149" Width="22" />
+        <digitControl:SevenSegmentControl x:Name="Seven" HorizontalAlignment="Left" Margin="6,14,0,149" Width="22"/>
+        <TextBlock x:Name="Minus" HorizontalAlignment="Left" Height="12" Margin="12,2,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="-MINUS" VerticalAlignment="Top" Width="49" FontSize="10" FontWeight="Bold" Foreground="#FF1B1B1B">            
+        </TextBlock>
+        <TextBlock x:Name="Memory" HorizontalAlignment="Left" Height="12" Margin="65,2,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="MEMORY" VerticalAlignment="Top" Width="49" FontSize="10" FontWeight="Bold" Foreground="#FF1B1B1B"/>
+        <TextBlock x:Name="Error" HorizontalAlignment="Left" Height="12" Margin="117,2,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="ERROR" VerticalAlignment="Top" Width="49" FontSize="10" FontWeight="Bold" Foreground="#FF1B1B1B"/>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,311 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Global Defaults -->
+    <Style TargetType="{x:Type ButtonBase}"
+           BasedOn="{StaticResource {x:Type ButtonBase}}">
+        <Setter Property="MinHeight"
+                Value="24" />
+        <Setter Property="MinWidth"
+                Value="80" />
+    </Style>
+
+    <!-- Flat Button -->
+    <Style x:Key="FlatButton"
+           TargetType="{x:Type ButtonBase}">        
+        <Setter Property="Foreground"
+                Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />        
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Center" />
+        <Setter Property="Padding"
+                Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Grid>
+                        <Border x:Name="border"
+                                Margin="0"
+                                BorderThickness="1"
+                                CornerRadius="2"
+                                Background="Transparent"
+                                BorderBrush="Transparent">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              RecognizesAccessKey="True" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">                            
+                            <Setter Property="Effect">                                
+                                <Setter.Value>
+                                    <DropShadowEffect Color="Red" BlurRadius="5" ShadowDepth="0" Opacity="5" RenderingBias="Quality" Direction="0"/>
+                                </Setter.Value>
+                            </Setter>                                    
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused"
+                                 Value="true" />
+                        <Trigger Property="ToggleButton.IsChecked"
+                                 Value="true" />                        
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="ButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#F3F3F3" Offset="0"/>
+        <GradientStop Color="#EBEBEB" Offset="0.5"/>
+        <GradientStop Color="#DDDDDD" Offset="0.5"/>
+        <GradientStop Color="#CDCDCD" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="GrayBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF2E2C2C" Offset="0.5"/>
+        <GradientStop Color="#FF666666"/>
+        <GradientStop Color="#FF666666" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BlueBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF1709A6" Offset="0.5"/>
+        <GradientStop Color="#FF3C5FAA"/>
+        <GradientStop Color="#FF3C5FAA" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="OrangeBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFA0132D" Offset="0.5"/>
+        <GradientStop Color="#FFC51132"/>
+        <GradientStop Color="#FFC51132" Offset="1"/>
+    </LinearGradientBrush>
+                
+    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+    <Style x:Key="Big3DButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid" HorizontalAlignment="Left" Height="83" VerticalAlignment="Top" Width="49" Margin="0" >
+                        <Path x:Name="lower" 
+                              Data="M201,401 C198.75089,365.4995 202.75024,363.99986 225,364.25 249.75068,364.24951 247.05553,372.75737 247.75,400 248.75053,439.24901 247.75025,438.9994 225.5,440 199.00089,439.49899 200.50088,434.99903 201,401 z" 
+                              HorizontalAlignment="Left" 
+                              Height="76.771" 
+                              Margin="0,1.5,0,0" 
+                              Stretch="Fill" 
+                              Stroke="#FF555151" 
+                              VerticalAlignment="Top" 
+                              Width="48.552" 
+                              RenderTransformOrigin="0.444,-2.423"
+                              Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">                            
+                            <Path.Effect>
+                                <DropShadowEffect Direction="350" Opacity="0.7" Color="#FF212020" ShadowDepth="2" BlurRadius="2"/>
+                            </Path.Effect>
+                        </Path>
+                        <Path x:Name="upper" Data="M201,401 C198.75089,365.4995 202.75024,363.99986 225,364.25 249.75068,364.24951 247.05553,372.75737 247.75,400 248.75053,439.24901 247.75025,438.9994 225.5,440 199.00089,439.49899 200.50088,434.99903 201,401 z" 
+                              HorizontalAlignment="Left" 
+                              Height="76.771" 
+                              Margin="0,0,0,0" 
+                              Stretch="Fill" 
+                              Stroke="#FF555151" 
+                              VerticalAlignment="Top" 
+                              Width="48.552" 
+                              RenderTransformOrigin="0.444,-2.423"
+                              Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Path.Effect>
+                                <DropShadowEffect Direction="70" Opacity="0.7" Color="#FF212020" ShadowDepth="2" BlurRadius="2"/>
+                            </Path.Effect>
+                        </Path>
+                        <TextBlock x:Name="textBlock" Height="Auto" Margin="14.781,18,14.333,24.5" TextWrapping="Wrap" Text="{Binding Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" Foreground="White" FontSize="26">
+                            <TextBlock.Effect>
+                                <BlurEffect KernelType="Gaussian" Radius="1.5" RenderingBias="Performance"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+                        <Trigger Property="IsKeyboardFocused" Value="true"/>
+                        <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Visibility" TargetName="upper" Value="Hidden"/>
+                            <Setter Property="Margin" TargetName="textBlock" Value="14.781,20,14.333,24.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Small3DButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid" HorizontalAlignment="Left" Height="35" VerticalAlignment="Top" Width="56" Margin="0" >
+                    	
+                        <Path x:Name="lower"
+                              Data="M42.249686,226.25004 C42.74969,213.74979 47.749722,211.74981 67.249845,211.33681 88.249978,210.99978 91.499998,216.75026 91.750002,226.50015 91.5,238.75001 86.749968,240.74998 66.999844,240.74999 46.749714,240.49956 42.499689,237.99996 42.249686,226.25004 z" 
+                              HorizontalAlignment="Left" 
+                              Height="29.927" 
+                              Margin="0,1.5,0,0" 
+                              Stretch="Fill" 
+                              Stroke="Black" 
+                              VerticalAlignment="Top" 
+                              Width="50.75"
+                              Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            
+                            <Path.Effect>
+                                <DropShadowEffect Direction="350" Opacity="0.7" Color="#FF212020" ShadowDepth="2" BlurRadius="2"/>
+                            </Path.Effect>
+                        </Path>
+                        <Path x:Name="upper" 
+                              Data="M42.249686,226.25004 C42.74969,213.74979 47.749722,211.74981 67.249845,211.33681 88.249978,210.99978 91.499998,216.75026 91.750002,226.50015 91.5,238.75001 86.749968,240.74998 66.999844,240.74999 46.749714,240.49956 42.499689,237.99996 42.249686,226.25004 z" 
+                              HorizontalAlignment="Left" 
+                              Height="29.927" 
+                              Margin="0,0,0,0" 
+                              Stretch="Fill" 
+                              Stroke="Black" 
+                              VerticalAlignment="Top" 
+                              Width="50.75"                               
+                              Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Path.Effect>
+                                <DropShadowEffect Direction="70" Opacity="0.7" Color="#FF212020" ShadowDepth="2" BlurRadius="2"/>
+                            </Path.Effect>
+                        </Path>
+                        <TextBlock x:Name="textBlock" 
+                                   Height="22.758" 
+                                   Margin="8,4.169,12,8.073" 
+                                   TextWrapping="NoWrap" 
+                                   Text="{Binding Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
+                                   Width="36" 
+                                   Foreground="White" 
+                                   FontSize="16" 
+                                   FontWeight="Normal" 
+                                   VerticalAlignment="Stretch" 
+                                   HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                                   TextAlignment="Center">
+                            <TextBlock.Effect>
+                                <BlurEffect KernelType="Gaussian" Radius="1.5" RenderingBias="Performance"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+                        <Trigger Property="IsKeyboardFocused" Value="true"/>
+                        <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Visibility" TargetName="upper" Value="Hidden"/>
+                            <Setter Property="Margin" TargetName="textBlock" Value="8,6.169,12,8.073"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="Medium3DButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="grid" HorizontalAlignment="Left" Height="40.333" VerticalAlignment="Top" Width="56" Margin="0" >
+
+                        <Path x:Name="lower"
+                              Data="M41.172134,223.03309 C41.510874,208.0286 46.257982,201.42465 67.041414,202.01015 90.329811,202.66622 93.729056,210.35888 94.237333,222.69395 94.068135,237.93915 88.26749,243.20765 67.041414,243.37752 46.791284,243.12709 42.189033,238.32767 41.172134,223.03309 z" 
+                              HorizontalAlignment="Left" 
+                              Height="38" 
+                              Margin="1,1.5,0,0" 
+                              Stretch="Fill" 
+                              Stroke="Black" 
+                              VerticalAlignment="Top" 
+                              Width="50.75"
+                              Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+
+                            <Path.Effect>
+                                <DropShadowEffect Direction="350" Opacity="0.7" Color="#FF212020" ShadowDepth="2" BlurRadius="2"/>
+                            </Path.Effect>
+                        </Path>
+                        <Path x:Name="upper" 
+                              Data="M41.172134,223.03309 C41.510874,208.0286 46.257982,201.42465 67.041414,202.01015 90.329811,202.66622 93.729056,210.35888 94.237333,222.69395 94.068135,237.93915 88.26749,243.20765 67.041414,243.37752 46.791284,243.12709 42.189033,238.32767 41.172134,223.03309 z" 
+                              HorizontalAlignment="Left" 
+                              Height="38" 
+                              Margin="1,0,0,0" 
+                              Stretch="Fill" 
+                              Stroke="Black" 
+                              VerticalAlignment="Top" 
+                              Width="50.75"                               
+                              Fill="{Binding Background, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Path.Effect>
+                                <DropShadowEffect Direction="70" Opacity="0.7" Color="#FF212020" ShadowDepth="2" BlurRadius="2"/>
+                            </Path.Effect>
+                        </Path>
+                        <TextBlock x:Name="textBlock" 
+                                   Height="22.758" 
+                                   Margin="8.333,7.503,11.666,10.071" 
+                                   TextWrapping="NoWrap" 
+                                   Text="{Binding Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
+                                   Width="36" 
+                                   Foreground="White" 
+                                   FontSize="16" 
+                                   FontWeight="Normal" 
+                                   VerticalAlignment="Stretch" 
+                                   HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                                   TextAlignment="Center">
+                            <TextBlock.Effect>
+                                <BlurEffect KernelType="Gaussian" Radius="1.5" RenderingBias="Performance"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+                        <Trigger Property="IsKeyboardFocused" Value="true"/>
+                        <Trigger Property="ToggleButton.IsChecked" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Visibility" TargetName="upper" Value="Hidden"/>
+                            <Setter Property="Margin" TargetName="textBlock" Value="8.333,9.503,11.666,10.071"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>    
+</ResourceDictionary>

@@ -1,0 +1,37 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="Calculator.DigitControl.SevenSegmentControl"
+	x:Name="UserControl"
+	Width="auto" 
+    Height="auto"    
+    >
+
+    <Grid Width="auto" Height="auto">
+        <Path Name="TopLeft" Data="M15,20 L10,130 20,145 30,135 34.666667,33.333333 z" HorizontalAlignment="Left" Height="28.307" Margin="3.162,4.265,0,0" Stretch="Fill" Fill="#FF272727" VerticalAlignment="Top" Width="5.688"
+              x:FieldModifier="private" />
+        <Path Name="Top" Data="M58,30 L70,10 30,10 20,15 40,30 z" HorizontalAlignment="Left" Height="4.529" Margin="5.004,2,0,0" Stretch="Fill" VerticalAlignment="Top" Width="13.065" Fill="#FF272727"
+              x:FieldModifier="private" />
+        <Path Name="TopRight" Data="M65,35 L77,15 83.667667,34.375266 79.001,135.62502 71,145 60,134 z" HorizontalAlignment="Left" Height="31.401" Margin="15.464,2.56,0,0" Stretch="Fill" VerticalAlignment="Top" Width="5.918" Fill="#FF272727"
+              x:FieldModifier="private" />
+        <Path Name="Middle" Data="M25,150 L35,140 55,140 68.052307,151.33333 C68.052307,151.33333 55,160 55,160 L35,160 z" HorizontalAlignment="Left" Height="4.529" Margin="6.439,30.993,0,0" Stretch="Fill" VerticalAlignment="Top" Width="9.76" Fill="#FF272727" RenderTransformOrigin="0.737,-0.033"
+              x:FieldModifier="private" />
+        <Path Name="BottomLeft" Data="M20,155 L10,160 5,265 25,261 29.333333,166.47826 z" HorizontalAlignment="Left" Height="26.042" Margin="2,33.711,0,0" Stretch="Fill" VerticalAlignment="Top" Width="5.61" Fill="#FF272727"
+              x:FieldModifier="private" />
+        <Path Name="Bottom" Data="M10,270 L29,265 35,275 50,275 55,290 20,290 z" HorizontalAlignment="Left" Height="5.66" Margin="2,59.745,0,0" Stretch="Fill" VerticalAlignment="Top" Width="11.989" Fill="#FF272727"
+              x:FieldModifier="private" />
+        <Path Name="BottomRight" Data="M60,160 L71.999903,153.33333 80,160 73.525871,272.91671 62,290 52.666667,269.33333" Fill="#FF272727" HorizontalAlignment="Left" Height="31.402" Margin="13.2,34.723,0,-0.125" Stretch="Fill" VerticalAlignment="Top" Width="5.841"
+              x:FieldModifier="private" />
+        <Ellipse Name="Dot" 
+                 Fill="#FF272727" 
+                 HorizontalAlignment="Left" 
+                 Height="3" 
+                 Margin="19,62,0,0" 
+                 VerticalAlignment="Top" 
+                 Width="3" 
+                 RenderTransformOrigin="0.429,0.429" x:FieldModifier="private" />
+    </Grid>
+</UserControl>

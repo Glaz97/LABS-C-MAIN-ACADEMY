@@ -1,0 +1,114 @@
+﻿<templates:CustomWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:digitControl="clr-namespace:Calculator.DigitControl"
+        xmlns:templates="clr-namespace:Calculator.Templates"
+        x:Class="Calculator.MainWindow"
+        Title="Calculator" Height="500" Width="288" 
+        OpacityMask="White"
+        Background="Transparent" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" 
+        AllowsTransparency="True" 
+        Icon="Calc_small.png"
+        Style="{DynamicResource MainWindow}">
+
+    <Grid DataContext="{Binding Source={StaticResource viewModelLocator}, Path=CalculatorViewModel}">        
+        <Image Source="Calculator.png" Margin="-1,2,1,-2"/>
+        <digitControl:Indicator Margin="57,79,-57,-79" State="{Binding State}"/>        
+        <Button Style="{StaticResource Big3DButtonStyle}" Margin="200,364,-200,-254" Tag="+" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="+"
+                Background="{DynamicResource GrayBrush}"  />
+        <Button Style="{DynamicResource Small3DButtonStyle}" Margin="42,212,-215,-59" Tag="CE"
+                Command="{Binding ButtonClick}"
+                CommandParameter="CE"                 
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Small3DButtonStyle}" Margin="96,212,-269,0" Tag="MRC" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="MRC"
+                Background="{DynamicResource BlueBrush}" />
+        <Button Style="{DynamicResource Small3DButtonStyle}" Margin="148,212,-271,0" Tag="M-" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="M-"
+                Background="{DynamicResource BlueBrush}" />
+        <Button Style="{DynamicResource Small3DButtonStyle}" Margin="201,212,-274,0" Tag="M+" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="M+"
+                Background="{DynamicResource BlueBrush}" />
+        <Button Style="{DynamicResource Small3DButtonStyle}" Margin="42,247,-215,1" Tag="C" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="C"
+                Background="{DynamicResource OrangeBrush}" />
+        <Button Style="{DynamicResource Small3DButtonStyle}" Margin="96,247,-215,1" Tag="√" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="√"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Small3DButtonStyle}" Margin="148,247,-215,1" Tag="%" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="%"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Small3DButtonStyle}" Margin="201,247,-215,1" Tag="÷" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="÷"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="200,282,-214,0" Tag="×"
+                Command="{Binding ButtonClick}"
+                CommandParameter="×"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="147,282,-212,1" Tag="9"
+                Command="{Binding ButtonClick}"
+                CommandParameter="9"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="94,282,-210,1" Tag="8"
+                Command="{Binding ButtonClick}"
+                CommandParameter="8"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="41,282,-209,0" Tag="7"
+                Command="{Binding ButtonClick}"
+                CommandParameter="7"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="41,323,-209,11" Tag="4"
+                Command="{Binding ButtonClick}"
+                CommandParameter="4"
+                Background="{DynamicResource GrayBrush}"/>
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="94,323,-209,11" Tag="5"
+                Command="{Binding ButtonClick}"
+                CommandParameter="5"
+                Background="{DynamicResource GrayBrush}"/>
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="147,323,-209,11" Tag="6"
+                Command="{Binding ButtonClick}"
+                CommandParameter="6"
+                Background="{DynamicResource GrayBrush}"/>
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="200,323,-209,11" Tag="-"
+                Command="{Binding ButtonClick}"
+                CommandParameter="-"
+                Background="{DynamicResource GrayBrush}"/>
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="146,365,-208,5" Tag="3"
+                Command="{Binding ButtonClick}"
+                CommandParameter="3"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="94,365,-208,5" Tag="2"
+                Command="{Binding ButtonClick}"
+                CommandParameter="2"
+                Background="{DynamicResource GrayBrush}" />
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="41,365,-208,5" Tag="1" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="1"
+                Background="{DynamicResource GrayBrush}" />        
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="41,406,-208,-423" Tag="0" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="0"
+                Background="{DynamicResource GrayBrush}"/>
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="94,406,-208,-423" Tag="•" 
+                Command="{Binding ButtonClick}"
+                CommandParameter="•"
+                Background="{DynamicResource GrayBrush}"/>
+        <Button Style="{DynamicResource Medium3DButtonStyle}" Margin="146,406,-208,-423" Tag="="
+                Command="{Binding ButtonClick}"
+                CommandParameter="="
+                Background="{DynamicResource GrayBrush}"/>
+    </Grid>
+</templates:CustomWindow>
