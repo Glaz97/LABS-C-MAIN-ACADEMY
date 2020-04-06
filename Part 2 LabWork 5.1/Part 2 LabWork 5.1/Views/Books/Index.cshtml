@@ -1,0 +1,35 @@
+﻿
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Покупка</title>
+</head>
+<body>
+    <div>
+        <h1>Part2 Labwork 5.1</h1>
+
+        <p>
+            <a href="/Books/Add/@ViewBag.Books.Count">Добавить</a>
+        </p>
+
+        <table>
+            <tr>
+                <td><p>Название книги</p></td>
+                <td><p>Издание</p></td>
+                <td><p>Опубликовано</p></td>
+                <td></td>
+            </tr>
+            @foreach (var b in ViewBag.Books)
+            {
+            <tr>
+                <td><p>@b.Author</p></td>
+                <td><p>@b.Edition</p></td>
+                <td><p>@b.Published</p></td>
+                <td><p><a href="/Books/Edit/@b.BookID">Изменить</a></p></td>
+                <td><p><a href="/Books/Delete/@b.BookID">Удалить</a></p></td>
+            </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

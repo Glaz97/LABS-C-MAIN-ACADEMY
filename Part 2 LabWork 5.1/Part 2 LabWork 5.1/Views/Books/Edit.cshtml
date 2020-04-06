@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        <h3>Форма изменения записи</h3>
+        <form method="post" action="Edit">
+            <input type="hidden" value="@ViewBag.Book.BookID" name="BookID" />
+            <table>
+                <tr>
+                    <td><p>Введите имя автора</p></td>
+                    <td><input type="text" name="Author" value="@ViewBag.Book.Author" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите название издания :</p></td>
+                    <td>
+                        <input type="text" name="Edition" value="@ViewBag.Book.Edition" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Введите год издания :</p></td>
+                    <td>
+                        <input type="text" name="Published" value="@ViewBag.Book.Published"/>
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Изменить и подтвердить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
