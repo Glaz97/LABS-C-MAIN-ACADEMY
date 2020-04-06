@@ -1,0 +1,32 @@
+﻿
+@{
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Gallery</title>
+</head>
+<body>
+    <h1>Gallery</h1>
+    <div class="main">
+
+        @using (Html.BeginForm("Upload", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <input type="file" name="upload" /><br>
+            <input type="submit" value="Загрузить файл" />
+        }
+
+        @foreach (var element in ViewBag.ListOfModels)
+        {
+            <p>
+                @element.Name
+                <img width="400" height="300" src="@element.Path" alt="@element.Name" />
+            </p>
+        }
+    </div>
+</body>
+</html>
