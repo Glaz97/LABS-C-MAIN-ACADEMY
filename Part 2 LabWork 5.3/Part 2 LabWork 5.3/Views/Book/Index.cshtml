@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Part_2_LabWork_5._3.DataModels.DbBookModel>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Покупка</title>
+</head>
+<body>
+    <div>
+        <h1>Part2 Labwork 5.3</h1>
+        <p><a href="/Book/Index">Обновить список книг</a></p>
+        @Html.ActionLink("Добавить книгу", "Add")
+        @{Html.RenderPartial("_BookDetailView", Model);}
+    </div>
+</body>
+</html>

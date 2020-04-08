@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Part_2_LabWork_5._3.DataModels.DbBookModel>
+
+<table>
+    <tr>
+        <td><p>Название книги</p></td>
+        <td><p>Издание</p></td>
+        <td><p>Опубликовано</p></td>
+        <td></td>
+    </tr>
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td><p>@b.Author</p></td>
+            <td><p>@b.Edition</p></td>
+            <td><p>@b.Publishing</p></td>
+        </tr>
+    }
+</table>
