@@ -1,0 +1,28 @@
+﻿@model Part_2_LabWork_5._4.Models.PictureModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "Picture", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+<fieldset>
+    <legend>Добавить изображение</legend>
+    <div class="editor-field"> <p>Название @Html.EditorFor(model => model.PictureName)</p></div>
+    <div class="editor-field"><p>Наименование автора @Html.EditorFor(model => model.Author)</p></div>
+    <div class="editor-field"><p>Описание картинки <input type="text" name="descriptionText" /></p></div>
+    <div class="editor-field">
+        <p>Файл изображения<input type="file" name="uploadImage" /></p>
+    </div>
+    <p><input type="submit" value="Добавить" /></p>
+</fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

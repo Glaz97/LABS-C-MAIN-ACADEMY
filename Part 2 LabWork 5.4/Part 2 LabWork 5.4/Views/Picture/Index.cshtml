@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Part_2_LabWork_5._4.Models.PictureModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Мои изображения</h2>
+
+<p>
+    @Html.ActionLink("Добавить изображение", "Create", "Picture")
+</p>
+<form method="post" action="Delete">
+    <table>
+        <tr>
+            <th>Название  </th>
+            <th>Автор  </th>
+            <th>Картинка  </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PictureName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.Raw("<img style='width:300px; height:260px;' src=\"data:image/jpeg;base64,"
+                                    + Convert.ToBase64String(item.Image) + "\" />")
+            </td>
+            <td><p><a href="/Picture/Details/@item.PictureID">Смотреть описание</a></p></td>
+            <td><p><a href="/Picture/Edit/@item.PictureID">Изменить</a></p></td>
+            <td><p><a href="/Picture/Delete/@item.PictureID">Удалить</a></p></td>
+        </tr>
+        }
+
+    </table>
+</form>

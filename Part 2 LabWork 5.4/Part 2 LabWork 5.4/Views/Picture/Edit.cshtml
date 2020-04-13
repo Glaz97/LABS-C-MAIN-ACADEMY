@@ -1,0 +1,27 @@
+﻿@model Part_2_LabWork_5._4.Models.PictureModel
+
+@using (Html.BeginForm("Edit", "Picture", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Изменить изображение и его данные</legend>
+        <input type="hidden" name="PictureID" value="@Model.PictureID" />
+        <div class="editor-field"> <p>Название @Html.EditorFor(model => model.PictureName)</p></div>
+        <div class="editor-field"> <p>Имя автора @Html.EditorFor(model => model.Author)</p></div>
+        <div class="editor-field"><p>Описание картинки <input type="text" name="descriptionText" value="@ViewBag.DescriptionText"/></p></div>
+        <div class="editor-field">
+            @Html.Raw("<img style='width:300px; height:260px;' src=\"data:image/jpeg;base64,"
+                    + Convert.ToBase64String(Model.Image) + "\" />")
+            <p>Файл изображения<input type="file" name="uploadImage" /></p>
+        </div>
+        <p><input type="submit" value="Изменить" /></p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
