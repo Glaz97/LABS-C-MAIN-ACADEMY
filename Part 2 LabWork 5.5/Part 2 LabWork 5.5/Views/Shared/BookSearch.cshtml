@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Part_2_LabWork_5._5.Models.BookModel>
+
+<div id="searchresults">
+    <h3>Все книги с похожим наименованием : @Model.First().BookName</h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+        <li>@item.BookName | @item.Author | @item.Edition | @item.Publishing</li>
+        }
+    </ul>
+</div>
