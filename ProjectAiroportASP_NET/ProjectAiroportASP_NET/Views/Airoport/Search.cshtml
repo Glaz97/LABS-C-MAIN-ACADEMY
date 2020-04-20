@@ -1,0 +1,71 @@
+﻿@model IEnumerable <ProjectAiroportASP_NET.Models.Airflights>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Список найденых рейсов</h1>
+
+<form method="post" action="Delete">
+    <table>
+        <tr>
+            <th>Аэропорт приб</th>
+            <th>Аэропорт отпр</th>
+            <th>Город приб</th>
+            <th>Город отпр</th>
+            <th>Дата и время приб</th>
+            <th>Дата и время отпр</th>
+            <th>№ рейса</th>
+            <th>№ ворот</th>
+            <th>Статус</th>
+            <th>Треминал</th>
+            <th>Ожид время приб</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AiroportArrival)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AiroportDepature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityArrival)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityDepature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndTimeArival)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndTimeDepature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Terminal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeExpected)
+            </td>
+            <td><p><a href="/Airoport/Edit/@item.AirFlightID">Изменить</a></p></td>
+            <td><p><a href="/Airoport/Delete/@item.AirFlightID">Удалить</a></p></td>
+        </tr>
+        }
+
+    </table>
+</form>
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>

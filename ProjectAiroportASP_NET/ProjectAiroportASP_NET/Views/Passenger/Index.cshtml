@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProjectAiroportASP_NET.Models.AirflightPassenger>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Список рейсов</h1>
+
+@using (Html.BeginForm("Search", "Passenger", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <p>Поиск пассажиров по ключевой строке</p>
+        <div class="editor-field"><p>Строка для поиска <input type="text" name="askString"/></p></div>
+        <p><input type="submit" value="Поиск" /></p>
+    </fieldset>
+}
+
+<div>
+    <p>
+        @Html.ActionLink("Добавить пассажира", "Add", "Passenger")
+    </p>
+</div>
+
+<form method="post" action="Delete">
+    <table>
+        <tr>
+            <th>ID пассажира</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Пол</th>
+            <th>№ пасспорта</th>
+            <th>Национальность</th>
+            <th>Клас полета</th>
+            <th>Дата рождения</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassengerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassportNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nationality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightClass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td><p><a href="/Passenger/Edit/@item.PassengerID">Изменить</a></p></td>
+                <td><p><a href="/Passenger/Delete/@item.PassengerID">Удалить</a></p></td>
+            </tr>
+        }
+
+    </table>
+</form>
+
+<div>
+    <p>
+        @Html.ActionLink("Список рейсов", "Index", "Airoport")
+    </p>
+    <p>
+        @Html.ActionLink("Список цен", "Index", "PriceList")
+    </p>
+</div>

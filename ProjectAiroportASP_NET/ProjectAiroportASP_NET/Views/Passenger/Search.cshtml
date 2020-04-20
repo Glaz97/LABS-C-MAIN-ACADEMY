@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProjectAiroportASP_NET.Models.AirflightPassenger>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Список найденых пассажиров</h1>
+
+<form method="post" action="Delete">
+    <table>
+        <tr>
+            <th>ID пассажира</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Пол</th>
+            <th>№ пасспорта</th>
+            <th>Национальность</th>
+            <th>Клас полета</th>
+            <th>Дата рождения</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassengerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SecondName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PassportNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nationality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightClass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td><p><a href="/Passenger/Edit/@item.PassengerID">Изменить</a></p></td>
+                <td><p><a href="/Passenger/Delete/@item.PassengerID">Удалить</a></p></td>
+            </tr>
+        }
+
+    </table>
+</form>
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>
