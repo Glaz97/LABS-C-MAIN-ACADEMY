@@ -14,8 +14,6 @@ namespace Part_2_LabWork_5._6.Controllers
         {
             ViewBag.Title = "Home Page";
 
-            var test = d.Addition(1, 2);
-
             return View();
         }
     }
