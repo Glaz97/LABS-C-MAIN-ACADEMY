@@ -18,8 +18,12 @@ namespace Part_2_LabWork_5._6.Controllers
             new Picture {ID = 4, Author = "Benya", Price = 600 ,Title= "HelloWorld"},
         };
 
+        ServiceReference1.IService1 d = new ServiceReference1.Service1Client();
+        
+
         public IEnumerable<Picture> GetAllPictures()
         {
+            var test = d.Addition(1, 2);
             return Pictures;
         }
         public IHttpActionResult GetPicture (int id)

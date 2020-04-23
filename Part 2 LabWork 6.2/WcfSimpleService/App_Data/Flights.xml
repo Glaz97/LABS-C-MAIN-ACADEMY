@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="true"?>
+
+<DocumentElement>
+  <Flight>
+    <FlightID>21248</FlightID>
+    <FlightDate>2015-07-04</FlightDate>
+    <DeliveryDate>2015-07-16</DeliveryDate>
+    <ShipCountry>France</ShipCountry>
+    <FlightTotal>650</FlightTotal>
+  </Flight>
+
+  <Flight>
+    <FlightID>21249</FlightID>
+    <FlightDate>2015-07-05</FlightDate>
+    <DeliveryDate>2015-07-10</DeliveryDate>
+    <ShipCountry>Germany</ShipCountry>
+    <FlightTotal>1750</FlightTotal>
+  </Flight>
+
+  <Flight>
+    <FlightID>21250</FlightID>
+    <FlightDate>2015-07-08</FlightDate>
+    <DeliveryDate>2015-07-12</DeliveryDate>
+    <ShipCountry>Brazil</ShipCountry>
+    <FlightTotal>2170</FlightTotal>
+  </Flight>
+
+  <Flight>
+    <FlightID>21251</FlightID>
+    <FlightDate>2015-07-08</FlightDate>
+    <DeliveryDate>2015-07-15</DeliveryDate>
+    <ShipCountry>France</ShipCountry>
+    <FlightTotal>1057</FlightTotal>
+  </Flight>
+
+  <Flight>
+    <FlightID>21550</FlightID>
+    <FlightDate>7/27/2015 4:23:49 PM</FlightDate>
+    <ShippedDate>8/6/2015 4:23:49 PM</ShippedDate>
+    <ShipCountry>Germany</ShipCountry>
+    <FlightTotal>562</FlightTotal>
+  </Flight>
+</DocumentElement>
