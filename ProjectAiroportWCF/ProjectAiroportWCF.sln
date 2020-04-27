@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.438
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectAiroport_WCF", "ProjectAiroportASP_NET\ProjectAiroport_WCF.csproj", "{5F3990A6-35D1-4359-BFF4-9A509CDF2AD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F3990A6-35D1-4359-BFF4-9A509CDF2AD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3990A6-35D1-4359-BFF4-9A509CDF2AD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3990A6-35D1-4359-BFF4-9A509CDF2AD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3990A6-35D1-4359-BFF4-9A509CDF2AD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FB2A706-BE06-490E-97B5-A5E2DAE2540C}
+	EndGlobalSection
+EndGlobal

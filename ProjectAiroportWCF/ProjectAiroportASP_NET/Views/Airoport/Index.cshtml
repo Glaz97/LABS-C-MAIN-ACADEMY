@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ProjectAiroportASP_NET.Models.Airflights>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Список рейсов</h1>
+
+@using (Html.BeginForm("Search", "Airoport", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <p>Поиск рейсов по ключевой строке</p>
+        <div class="editor-field"><p>Строка для поиска <input type="text" name="askString"/></p></div>
+        <p><input type="submit" value="Поиск" /></p>
+    </fieldset>
+}
+
+<div>
+    <p>
+        @Html.ActionLink("Добавить рейс", "Add", "Airoport")
+    </p>
+</div>
+
+<form method="post" action="Delete">
+    <table>
+        <tr>
+            <th>Аэропорт приб</th>
+            <th>Аэропорт отпр</th>
+            <th>Город приб</th>
+            <th>Город отпр</th>
+            <th>Дата и время приб</th>
+            <th>Дата и время отпр</th>
+            <th>№ рейса</th>
+            <th>№ ворот</th>
+            <th>Статус</th>
+            <th>Треминал</th>
+            <th>Ожид время приб</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AiroportArrival)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AiroportDepature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityArrival)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CityDepature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAndTimeArival)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAndTimeDepature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FlightNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Terminal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeExpected)
+                </td>
+                <td><p><a href="/Airoport/Edit/@item.AirFlightID">Изменить</a></p></td>
+                <td><p><a href="/Airoport/Delete/@item.AirFlightID">Удалить</a></p></td>
+            </tr>
+        }
+
+    </table>
+</form>
+
+<div>
+    <p>
+        @Html.ActionLink("Список пассажиров", "Index", "Passenger")
+    </p>
+    <p>
+        @Html.ActionLink("Список цен", "Index", "PriceList")
+    </p>
+</div>

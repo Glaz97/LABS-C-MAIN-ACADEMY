@@ -1,0 +1,20 @@
+﻿@model ProjectAiroportASP_NET.Models.AirflightPriceList
+
+@using (Html.BeginForm("Add", "PriceList", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Добавить новую цену</legend>
+        <input type="hidden" name="PriceListID" value="@Model.PriceListID" />
+        <div class="editor-field"> <p>ID рейса @Html.EditorFor(model => model.AirFlightID)</p></div>
+        <div class="editor-field"> <p>Цена эконом @Html.EditorFor(model => model.Econom)</p></div>
+        <div class="editor-field"> <p>Цена бизнес @Html.EditorFor(model => model.Business)</p></div>
+        <div class="editor-field"> <p>Цена бизнес плюс @Html.EditorFor(model => model.BusinessPlus)</p></div>
+
+        <p><input type="submit" value="Добавить" /></p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProjectAiroportASP_NET.Models.AirflightPriceList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Список цен</h1>
+
+@using (Html.BeginForm("Search", "PriceList", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <p>Поиск цен по ключевой строке</p>
+        <div class="editor-field"><p>Строка для поиска <input type="text" name="askString"/></p></div>
+        <p><input type="submit" value="Поиск" /></p>
+    </fieldset>
+}
+
+<div>
+    <p>
+        @Html.ActionLink("Добавить цену", "Add", "PriceList")
+    </p>
+</div>
+
+<form method="post" action="Delete">
+    <table>
+        <tr>
+            <th>ID цены</th>
+            <th>ID рейса</th>
+            <th>Цена эконом</th>
+            <th>Цена бизнес</th>
+            <th>Цена бизнес плюс</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceListID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirFlightID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Econom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Business)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BusinessPlus)
+                </td>
+                <td><p><a href="/PriceList/Edit/@item.PriceListID">Изменить</a></p></td>
+                <td><p><a href="/PriceList/Delete/@item.PriceListID">Удалить</a></p></td>
+            </tr>
+        }
+
+    </table>
+</form>
+
+<div>
+    <p>
+        @Html.ActionLink("Список рейсов", "Index", "Airoport")
+    </p>
+    <p>
+        @Html.ActionLink("Список пассажиров", "Index", "Passenger")
+    </p>
+</div>

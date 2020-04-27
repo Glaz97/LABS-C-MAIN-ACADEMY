@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ProjectAiroportASP_NET.Models.AirflightPriceList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Список найденых цен</h1>
+
+<form method="post" action="Delete">
+    <table>
+        <tr>
+            <th>ID цены</th>
+            <th>ID рейса</th>
+            <th>Цена эконом</th>
+            <th>Цена бизнес</th>
+            <th>Цена бизнес плюс</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceListID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirFlightID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Econom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Business)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BusinessPlus)
+                </td>
+                <td><p><a href="/PriceList/Edit/@item.PriceListID">Изменить</a></p></td>
+                <td><p><a href="/PriceList/Delete/@item.PriceListID">Удалить</a></p></td>
+            </tr>
+        }
+
+    </table>
+</form>
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>

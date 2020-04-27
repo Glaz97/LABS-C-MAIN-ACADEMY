@@ -1,0 +1,26 @@
+﻿@model ProjectAiroportASP_NET.Models.Airflights
+
+@using (Html.BeginForm("Add", "Airoport", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Добавить новый рейс</legend>
+        <input type="hidden" name="AirFlightID" value="@Model.AirFlightID" />
+        <div class="editor-field"> <p>Аэропорт приб @Html.EditorFor(model => model.AiroportArrival)</p></div>
+        <div class="editor-field"> <p>Аэропорт отпр @Html.EditorFor(model => model.AiroportDepature)</p></div>
+        <div class="editor-field"> <p>Город приб @Html.EditorFor(model => model.CityArrival)</p></div>
+        <div class="editor-field"> <p>Город отпр @Html.EditorFor(model => model.CityDepature)</p></div>
+        <div class="editor-field"> <p>Дата и время приб @Html.EditorFor(model => model.DateAndTimeArival)</p></div>
+        <div class="editor-field"> <p>Дата и время отпр @Html.EditorFor(model => model.DateAndTimeDepature)</p></div>
+        <div class="editor-field"> <p>№ рейса @Html.EditorFor(model => model.FlightNumber)</p></div>
+        <div class="editor-field"> <p>№ ворот @Html.EditorFor(model => model.Gate)</p></div>
+        <div class="editor-field"> <p>Статус @Html.EditorFor(model => model.Status)</p></div>
+        <div class="editor-field"> <p>Треминал @Html.EditorFor(model => model.Terminal)</p></div>
+        <div class="editor-field"> <p>Ожид время приб< @Html.EditorFor(model => model.TimeExpected)</p></div>
+        <p><input type="submit" value="Добавить" /></p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>

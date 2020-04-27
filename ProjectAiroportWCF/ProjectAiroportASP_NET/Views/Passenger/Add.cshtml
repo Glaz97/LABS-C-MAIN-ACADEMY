@@ -1,0 +1,23 @@
+﻿@model ProjectAiroportASP_NET.Models.AirflightPassenger
+
+@using (Html.BeginForm("Add", "Passenger", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Добавить нового пассажира</legend>
+        <input type="hidden" name="PassengerID" value="@Model.PassengerID" />
+        <div class="editor-field"> <p>ID рейса @Html.EditorFor(model => model.AirFlightID)</p></div>
+        <div class="editor-field"> <p>Имя @Html.EditorFor(model => model.FirstName)</p></div>
+        <div class="editor-field"> <p>Фамилия @Html.EditorFor(model => model.SecondName)</p></div>
+        <div class="editor-field"> <p>Пол @Html.EditorFor(model => model.Sex)</p></div>
+        <div class="editor-field"> <p>№ пасспорта @Html.EditorFor(model => model.PassportNumber)</p></div>
+        <div class="editor-field"> <p>Национальность @Html.EditorFor(model => model.Nationality)</p></div>
+        <div class="editor-field"> <p>Клас полета @Html.EditorFor(model => model.FlightClass)</p></div>
+        <div class="editor-field"> <p>Дата рождения @Html.EditorFor(model => model.DateOfBirth)</p></div>
+        <p><input type="submit" value="Добавить" /></p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться к списку", "Index")
+</div>
