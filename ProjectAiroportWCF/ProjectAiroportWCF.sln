@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectAiroport_WCF", "Proj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "WcfService\WcfService.csproj", "{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSF_SimpleRESTClient_1", "..\Part 2 LabWork 6.2\WSF_SimpleRESTClient_1\WSF_SimpleRESTClient_1.csproj", "{A8867036-A215-4A5D-8055-DC8DF6501B64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84056D36-81E5-4886-9EBD-A3A0C1FAAFD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8867036-A215-4A5D-8055-DC8DF6501B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8867036-A215-4A5D-8055-DC8DF6501B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8867036-A215-4A5D-8055-DC8DF6501B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8867036-A215-4A5D-8055-DC8DF6501B64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

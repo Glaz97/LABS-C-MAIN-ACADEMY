@@ -28,4 +28,11 @@
     <ShipCountry>France</ShipCountry>
     <FlightTotal>1057</FlightTotal>
   </Flight>
+  <Flight>
+    <FlightID>21550</FlightID>
+    <FlightDate>27.04.2020 20:07:18</FlightDate>
+    <ShippedDate>07.05.2020 20:07:18</ShippedDate>
+    <ShipCountry>Germany</ShipCountry>
+    <FlightTotal>562</FlightTotal>
+  </Flight>
 </DocumentElement>
