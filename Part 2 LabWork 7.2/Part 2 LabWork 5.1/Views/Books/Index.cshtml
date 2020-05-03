@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Part_2_LabWork_7._2.Models.BookModel>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Покупка</title>
+</head>
+<body>
+    <div>
+        <h1>Part2 Labwork 7.2</h1>
+
+        <p>
+            <a href="/Books/Add/@Model.Count()">Добавить</a>
+        </p>
+
+        <table>
+            <tr>
+                <td><p>ID</p></td>
+                <td><p>Название книги</p></td>
+                <td><p>Автор</p></td>
+                <td><p>Издание</p></td>
+                <td><p>Опубликовано</p></td>
+                <td></td>
+            </tr>
+            @foreach (var b in Model)
+            {
+            <tr>
+                <td><p>@b.ID</p></td>
+                <td><p>@b.BookName</p></td>
+                <td><p>@b.Author</p></td>
+                <td><p>@b.Edition</p></td>
+                <td><p>@b.Publishing</p></td>
+                <td><p><a href="/Books/Edit/@b.ID">Изменить</a></p></td>
+                <td><p><a href="/Books/Delete/@b.ID">Удалить</a></p></td>
+            </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

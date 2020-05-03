@@ -1,0 +1,44 @@
+﻿@model Part_2_LabWork_7._2.Models.BookModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Покупка</title>
+</head>
+<body>
+    <div>
+        <h3>Форма добавления книги</h3>
+        <form method="post" action="Add">
+            <input type="hidden" value="@ViewBag.ID" name="ID" />
+            <table>
+                <tr>
+                    <td><p>Название книги</p></td>
+                    <td><input type="text" name="BookName" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите имя автора</p></td>
+                    <td><input type="text" name="Author" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите название издания :</p></td>
+                    <td>
+                        <input type="text" name="Edition" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Введите год издания :</p></td>
+                    <td>
+                        <input type="text" name="Publishing" />
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Отправить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

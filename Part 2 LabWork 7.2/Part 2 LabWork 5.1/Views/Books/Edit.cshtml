@@ -1,0 +1,45 @@
+﻿@model Part_2_LabWork_7._2.Models.BookModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        <h3>Форма изменения записи</h3>
+        <form method="post" action="Edit">
+            <input type="hidden" value="@Model.ID" name="ID" />
+            <table>
+                <tr>
+                    <td><p>Введите название книги</p></td>
+                    <td><input type="text" name="BookName" value="@Model.BookName" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите имя автора</p></td>
+                    <td><input type="text" name="Author" value="@Model.Author" /> </td>
+                </tr>
+                <tr>
+                    <td><p>Введите название издания :</p></td>
+                    <td>
+                        <input type="text" name="Edition" value="@Model.Edition" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Введите год издания :</p></td>
+                    <td>
+                        <input type="text" name="Publishing" value="@Model.Publishing" />
+                    </td>
+                </tr>
+                <tr><td><input type="submit" value="Изменить и подтвердить" /> </td><td></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
