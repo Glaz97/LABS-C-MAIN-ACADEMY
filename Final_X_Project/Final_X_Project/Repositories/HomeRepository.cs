@@ -15,7 +15,7 @@ namespace Final_X_Project.Repositories
             try
             {
                 var User = db.PizzaUsers.Where(x => x.UserLogin == login && x.Password == password).FirstOrDefault();
-                return User != null ? User.IsAnEmployee ? "Admin" : "User" : throw new Exception("Неправильный логин или пароль!");
+                return User != null ? User.IsAnEmployee ? "Admin" : throw new Exception("попробуй ввести IgorKolo 123") : throw new Exception("Неправильный логин или пароль!");
             }
             catch
             {
@@ -30,7 +30,7 @@ namespace Final_X_Project.Repositories
                 pizzaUzer.DateOfRegistration = DateTime.Now;
                 db.PizzaUsers.Add(pizzaUzer);
                 db.SaveChanges();
-                return "User";
+                return "Admin";
             }
             catch
             {
