@@ -18,7 +18,7 @@ namespace FinalProject
     public partial class Form1 : Form
     {
         Model model;
-        TrackBar tbSize;
+        TrackBar tbSize; 
         TrackBar tbRoll;
         TrackBar tbPitch;
         TrackBar tbYaw;
@@ -36,12 +36,12 @@ namespace FinalProject
             tbPitch = new TrackBar { Parent = this, Maximum = 170, Minimum = 145, Left = 220, Value = 160 };
             tbYaw = new TrackBar { Parent = this, Maximum = 340, Left = 330, Value = 0 };
 
-            tbSize.ValueChanged += tb_ValueChanged;
-            tbRoll.ValueChanged += tb_ValueChanged;
-            tbPitch.ValueChanged += tb_ValueChanged;
-            tbYaw.ValueChanged += tb_ValueChanged;
+            tbSize.ValueChanged += Tb_ValueChanged;
+            tbRoll.ValueChanged += Tb_ValueChanged;
+            tbPitch.ValueChanged += Tb_ValueChanged;
+            tbYaw.ValueChanged += Tb_ValueChanged;
 
-            tb_ValueChanged(null, EventArgs.Empty);
+            Tb_ValueChanged(null, EventArgs.Empty);
 
 
             //загружаем модель из .obj
@@ -49,7 +49,7 @@ namespace FinalProject
             model.LoadFromObj(new StreamReader("untitled.obj"));
         }
 
-        void tb_ValueChanged(object sender, EventArgs e)
+        void Tb_ValueChanged(object sender, EventArgs e)
         {
             scale = tbSize.Value / 70f;
             pitch = (float)(tbPitch.Value * Math.PI / 180);

@@ -151,7 +151,7 @@ $('body').on('click', "input[id = 'btnEditConfirm']", function () {
                 $('.main-panel').show();
                 window.location.href = "/Admin/Index";
                 //reRenderIndex();
-                ClearAddEditParial();
+                ClearAddEditPartial();
             },
             error: function (data) {
                 alert("При попытке добавления заказа возникла ошибка!");
@@ -228,7 +228,7 @@ function reRenderThePartial($className, $methodName) {
     });
 }
 
-function ClearAddEditParial() {
+function ClearAddEditPartial() {
     $('#OrderID').val("");
     $('#UserID').val("");
     $('#EmployeeID').val("");

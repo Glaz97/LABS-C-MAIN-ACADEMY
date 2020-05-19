@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Telegram.Bot;
 
 namespace Final_X_Project.Repositories
 {
@@ -33,7 +32,10 @@ namespace Final_X_Project.Repositories
             db.Orders.Add(order);
             db.SaveChanges();
 
-            await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Add));
+            if (!order.IsFinished)
+            {
+                await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Add));
+            }
 
             return order.IsFinished;
         }
@@ -49,7 +51,7 @@ namespace Final_X_Project.Repositories
             db.Orders.Add(order);
             db.SaveChanges();
 
-            if (order.IsFinished)
+            if (!order.IsFinished)
             {
                 await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Edit));
             }
