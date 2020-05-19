@@ -49,7 +49,10 @@ namespace Final_X_Project.Repositories
             db.Orders.Add(order);
             db.SaveChanges();
 
-            await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Edit));
+            if (order.IsFinished)
+            {
+                await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Edit));
+            }
 
             return order.IsFinished;
         }

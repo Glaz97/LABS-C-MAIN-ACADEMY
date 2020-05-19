@@ -54,17 +54,16 @@ namespace Final_X_Project.TelegramBot.Commands
 
             await bot_client.SendTextMessageAsync(chatId: Convert.ToInt32(userContactData.PhoneNumber), text: mainMessageToUser);
 
-
             Message message = await bot_client.SendPhotoAsync(
             chatId: Convert.ToInt32(userContactData.PhoneNumber),
-            photo: "/Images/Pizza/2.png",
+            photo: "https://raw.githubusercontent.com/Glaz97/LABS-C-MAIN-ACADEMY/CSharpCourses/Final_X_Project/Final_X_Project/Images/"+ pizza.PizzaID +".png",
             caption: "<b>Ваша пицца</b>!",
-            parseMode: ParseMode.Html
-            );
-            //D:\C# Courses\Arrays\Final_X_Project\Final_X_Project\Images\Pizza\2.png
+            parseMode: ParseMode.Html);
+
             var additionalMessageToUser = " Состав заказа - пицца " + pizza.NameOfPizza + ", состав: " + pizza.Сompound
-                + ", размер-" + pizza.Size + ", стоимость заказа - " + order.Value + "."
+                + ", размер-" + pizza.Size + ", стоимость заказа - " + order.Value + "грн."
                 + "\n" + " Адрес доставки - " + userContactData.Adress + "\n"
+                + "Комментарий к заказу - " + order.Comment + "\n"
                 + "Желаем приятного аппетита!" + "\n" + " @X-Pizza Team";
 
             await bot_client.SendTextMessageAsync(chatId: Convert.ToInt32(userContactData.PhoneNumber), text: additionalMessageToUser);
@@ -72,6 +71,7 @@ namespace Final_X_Project.TelegramBot.Commands
 
         public async void SendEditMessage(int userId, PizzasNomenclature pizza, Orders order)
         {
+            bot_client = new TelegramBotClient(botSettings.GetKey());
             var userContactData = db.UsersContactData.Where(x => x.UserID == userId).Select(x => x).FirstOrDefault();
 
             var mainMessageToUser = "Уважаемый клиент!" + "\n" +
@@ -83,6 +83,7 @@ namespace Final_X_Project.TelegramBot.Commands
 
         public async void SendCustomMessage(int userId, PizzasNomenclature pizza, Orders order)
         {
+            bot_client = new TelegramBotClient(botSettings.GetKey());
             var userContactData = db.UsersContactData.Where(x => x.UserID == userId).Select(x => x).FirstOrDefault();
 
             var messageToUser = "Сообщение от телеги";
