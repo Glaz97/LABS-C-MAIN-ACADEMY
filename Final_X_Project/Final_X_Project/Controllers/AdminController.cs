@@ -56,7 +56,7 @@ namespace Final_X_Project.Controllers
         public ActionResult PaginationLoad(int pageNumber, int elementsPerPage, bool isFinished)
         {          
             return isFinished ? RenderOldOrdersPartial(elementsPerPage, pageNumber) 
-                : RenderActualOrdersPartial(elementsPerPage, pageNumber);
+               : RenderActualOrdersPartial(elementsPerPage, pageNumber);
         }
 
         public ActionResult Delete(int id, int elementsPerPage)
