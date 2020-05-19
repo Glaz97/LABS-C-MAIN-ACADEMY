@@ -34,7 +34,14 @@ namespace Final_X_Project.Repositories
 
             if (!order.IsFinished)
             {
-                await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Add));
+                try
+                {
+                    await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Add));
+                }
+                catch
+                {
+                    //не найдена картинка или не указан ID телеграм
+                }
             }
 
             return order.IsFinished;
@@ -45,7 +52,7 @@ namespace Final_X_Project.Repositories
             return db.Orders.Where(x => x.OrderID == id).Select(x => x).FirstOrDefault();
         }
 
-        public async Task<bool> SaveChangedElement (Orders order)
+        public async Task<bool> SaveChangedElement(Orders order)
         {
             db.Orders.Remove(db.Orders.Where(x => x.OrderID == order.OrderID).First());
             db.Orders.Add(order);
@@ -53,7 +60,14 @@ namespace Final_X_Project.Repositories
 
             if (!order.IsFinished)
             {
-                await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Edit));
+                try
+                {
+                    await Task.Run(() => telegramBot.SendTelegramMessage(order.UserID, order, BotMessageTypes.TypeOfMessage.Edit));
+                }
+                catch
+                {
+                    //не найдена картинка или не указан ID телеграм
+                }
             }
 
             return order.IsFinished;
@@ -68,7 +82,7 @@ namespace Final_X_Project.Repositories
             }
             var SelectedOrders = db.Orders.Select(x => x).Where(x => x.IsFinished == IsFinished).OrderBy(x => x.OrderID);
 
-            Dictionary.Add(Convert.ToInt32(Math.Ceiling(Convert.ToDouble(SelectedOrders.Count() / elementsPerPage))+1), SelectedOrders.Skip(elementsPerPage * (pageNumber - 1)).Take(elementsPerPage).ToList());
+            Dictionary.Add(Convert.ToInt32(Math.Ceiling(Convert.ToDouble(SelectedOrders.Count() / elementsPerPage)) + 1), SelectedOrders.Skip(elementsPerPage * (pageNumber - 1)).Take(elementsPerPage).ToList());
 
             return Dictionary.FirstOrDefault();
         }
@@ -86,9 +100,9 @@ namespace Final_X_Project.Repositories
             DateTime DateTimeOrder;
 
             try
-            {DateTimeOrder = Convert.ToDateTime(searchString);}
+            { DateTimeOrder = Convert.ToDateTime(searchString); }
             catch
-            { DateTimeOrder = DateTime.MinValue;}
+            { DateTimeOrder = DateTime.MinValue; }
 
             int OrderID, PizzaID, RestaurantID, UserID, EmployeeID;
             double Value;
@@ -112,9 +126,9 @@ namespace Final_X_Project.Repositories
                 EmployeeID = -1;
             }
 
-            var SearchedOrders = db.Orders.AsEnumerable().Select(x => x).Where(x => x.IsFinished == finishedOrNot && 
+            var SearchedOrders = db.Orders.AsEnumerable().Select(x => x).Where(x => x.IsFinished == finishedOrNot &&
             (x.OrderID == OrderID || x.PizzaID == PizzaID || x.RestaurantID == RestaurantID || x.UserID == UserID
-            || x.Value == Value || x.DataTimeOrder == DateTimeOrder || x.Comment == searchString 
+            || x.Value == Value || x.DataTimeOrder == DateTimeOrder || x.Comment == searchString
             || x.EmployeeID == EmployeeID)).OrderBy(x => x.OrderID);
 
             var test = SearchedOrders.Count();
