@@ -32,9 +32,9 @@ namespace FinalProject
             Size = new Size(600, 600);
 
             tbSize = new TrackBar { Parent = this, Maximum = 300, Left = 0, Value = 130, Minimum = 1 };
-            tbRoll = new TrackBar { Parent = this, Maximum = 300, Left = 110, Value = 0 };
-            tbPitch = new TrackBar { Parent = this, Maximum = 360, Left = 220, Value = 160 };
-            tbYaw = new TrackBar { Parent = this, Maximum = 360, Left = 330, Value = 0 };
+            tbRoll = new TrackBar { Parent = this, Maximum = 120, Left = 110, Value = 0 };
+            tbPitch = new TrackBar { Parent = this, Maximum = 170, Minimum = 145, Left = 220, Value = 160 };
+            tbYaw = new TrackBar { Parent = this, Maximum = 340, Left = 330, Value = 0 };
 
             tbSize.ValueChanged += tb_ValueChanged;
             tbRoll.ValueChanged += tb_ValueChanged;
@@ -55,6 +55,8 @@ namespace FinalProject
             pitch = (float)(tbPitch.Value * Math.PI / 180);
             roll = (float)(tbRoll.Value * Math.PI / 180);
             yaw = (float)(tbYaw.Value * Math.PI / 180);
+
+            textBox1.Text = tbPitch.Value.ToString();
 
             Invalidate();
         }

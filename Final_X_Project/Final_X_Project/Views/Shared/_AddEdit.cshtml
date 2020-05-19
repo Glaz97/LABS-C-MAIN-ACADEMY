@@ -1,0 +1,24 @@
+﻿@model Final_X_Project.Models.Orders
+
+<div class="row main-page" id="addEdit" style="display:none">
+    <div class="col-md-12">
+        <h2 class="header-center">Добавить/Изменить заказ</h2>
+        <div class="col-md-12 main-enter-block">
+            @using (Html.BeginForm("EditConfirm", "Admin", FormMethod.Post, new { id = "addEditForm", enctype = "multipart/form-data" }))
+            {
+                <div class="editor-field"><p class="inline-p">Пользователь @Html.EditorFor(model => model.UserID)</p></div>
+                <div class="editor-field"><p class="inline-p">Курьер @Html.EditorFor(model => model.EmployeeID)</p></div>
+                <div class="editor-field"><p class="inline-p">Ресторан @Html.EditorFor(model => model.RestaurantID)</div>
+                <div class="editor-field"><p class="inline-p">Пицца @Html.EditorFor(model => model.PizzaID)</p></div>
+                <div class="editor-field"><p class="inline-p">Дата и время заказа @Html.EditorFor(model => model.DataTimeOrder)</p></div>
+                <div class="editor-field"><p class="inline-p">Сумма заказа @Html.EditorFor(model => model.Value)</p></div>
+                <div class="editor-field"><p class="inline-p">Комментарий к заказу @Html.EditorFor(model => model.Comment)</p></div>
+                <div class="editor-field"><p class="inline-p">Заказ выполнен @Html.EditorFor(model => model.IsFinished)</p></div>
+                <p><input id="btnEditConfirm" type="button" value="ОК" /></p>
+                <input type="hidden" id="OrderID" name="OrderID" value="@Model.OrderID" />
+            }
+            <input type="hidden" id="TypeOFPartial" value="" />
+            @Html.ActionLink("Назад", "Index", "Admin")
+        </div>
+    </div>
+</div>

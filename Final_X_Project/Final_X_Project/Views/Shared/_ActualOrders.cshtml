@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Final_X_Project.Models.Orders>
+
+@Html.Partial("_Instrumental", new ViewDataDictionary { { "Type", "Actual" } })
+
+<div class="order-header">
+    <p class="table-order-header">Заказы в процессе:</p>
+</div>
+
+<table class="table-order" id="table-order-actual">
+    <tr>
+        <td>ID польз.</td>
+        <td>ID сотр.</td>
+        <td>ID рестор.</td>
+        <td>ID пиццы</td>
+        <td>Время заказа</td>
+        <td>Сумма заказа</td>
+        <td>Заказ выполнен</td>
+        <td>Комментарий к заказу</td>
+        <td></td>
+        <td></td>
+    </tr>
+    @foreach (var order in ViewBag.ActualOrders)
+    {
+        <tr>
+            <td>@order.UserID</td>
+            <td>@order.EmployeeID</td>
+            <td>@order.RestaurantID</td>
+            <td>@order.PizzaID</td>
+            <td>@order.DataTimeOrder</td>
+            <td>@order.Value</td>
+            <td>@order.IsFinished</td>
+            <td>@order.Comment</td>
+            <td><input class="no-border" type="button" id="@order.OrderID" name="Edit" value="Изменить" /></td>
+            <td><input class="no-border" type="button" id="@order.OrderID" name="Delete" value="Удалить" /></td>
+        </tr>
+    }
+</table>
+
+<div class="pagination" id="pagination-actual">
+    @Html.Partial("_Pagination", new ViewDataDictionary { { "Count", ViewBag.PagesForActualOrders } })
+</div>

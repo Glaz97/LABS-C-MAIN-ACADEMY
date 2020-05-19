@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Final_X_Project.Models.Orders>
+
+<div class="main-panel">
+    <h1 class="main-header">Добро пожаловать в систему администрирования</h1>
+
+    <div class="pagination-count">
+        <p>К-во элем.  <input id="count-of-elements" type="text" value="5"/></p>
+    </div>
+
+    <div class="actual-orders">
+        @Html.Partial("_ActualOrders", Model)
+    </div>
+
+    <div class="old-orders">
+        @Html.Partial("_OldOrders", Model)
+    </div>
+</div>
+
+<div class="addEditContainer">
+    @Html.Partial("_AddEdit", new Final_X_Project.Models.Orders())
+</div>
+
+<div class="loader" id="AjaxLoader" style="display:none;">
+    <div class="strip-holder">
+        <div class="strip-1"></div>
+        <div class="strip-2"></div>
+        <div class="strip-3"></div>
+    </div>
+</div>
+
+@Scripts.Render("~/scripts/jquery-3.3.1.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+@Scripts.Render("~/scripts/Pagination.js")
+
+

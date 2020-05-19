@@ -1,0 +1,15 @@
+﻿@model string
+
+<div class="instrumental">
+    <ul>
+        <li><input class="no-border" type="button" id="add-@ViewBag.Type" name="add" value="Добавить" /></li>
+        <li><input class="no-border" type="button" id="update-@ViewBag.Type" name="update" value="Обновить" /></li>
+        <li>
+            <p>
+                Поиск по ключевым полям:
+                <input type="text" id="search-@ViewBag.Type" name="search" value="" />
+                <input class="no-border" type="button" id="enterSearch" name="enterSearch" value="&#128270;" />
+            </p>
+        </li>
+    </ul>
+</div>

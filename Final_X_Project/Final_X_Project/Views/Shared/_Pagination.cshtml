@@ -1,0 +1,7 @@
+﻿
+<ul class="pagination" id="pagination-list">
+    @for (int i = 1; i <= ViewBag.Count; i++)
+    {
+        <li><input type="button" id="pagination-page" value="@i"></li>
+    }
+</ul>
