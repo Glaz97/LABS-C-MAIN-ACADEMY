@@ -149,8 +149,8 @@ $('body').on('click', "input[id = 'btnEditConfirm']", function () {
                 $('#AjaxLoader').hide();
                 $('#addEdit').hide();
                 $('.main-panel').show();
-                window.location.href = "/Admin/Index";
-                //reRenderIndex();
+                //window.location.href = "/Admin/Index";
+                reRenderIndex();
                 ClearAddEditPartial();
             },
             error: function (data) {

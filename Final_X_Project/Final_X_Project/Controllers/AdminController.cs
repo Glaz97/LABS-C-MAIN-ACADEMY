@@ -1,7 +1,5 @@
 ﻿using Final_X_Project.Models;
 using Final_X_Project.Repositories;
-using Final_X_Project.TelegramBot;
-using Final_X_Project.TelegramBot.Commands;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
