@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F72AACD0-B5A6-4300-8FFF-2C00FA345AF6}</ProjectGuid>
+    <ProjectGuid>{B6A09DE1-ED1D-4066-A2E7-13E48DC07194}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>WCF_Service</RootNamespace>
-    <AssemblyName>WCF_Service</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>WCF_Client</RootNamespace>
+    <AssemblyName>WCF_Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
