@@ -22,7 +22,7 @@ namespace SelfHost
         private bool ValidateEnteredData(string login , string password)
         {
             Regex rgLog = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Regex rgPass = new Regex(@"^(?=[a-z]*[0-9][a-z]*[0-9])^(?=[0-9]*[a-z][0-9]*[a-z])[a-z0-9]{8,}$");
+            Regex rgPass = new Regex(@"^(?=[a-z]*[0-9][a-z]*[0-9])^(?=[0-9]*[a-z][0-9]*[a-z])[a-z0-9]{4,}$");
 
             return rgLog.Match(login).Success && rgPass.Match(password).Success  ? true : false;
         }
