@@ -16,8 +16,7 @@ namespace SelfHost
     {
         public bool ValidateTheData(string login, string password)
         {
-            return !ValidateEnteredData(login, password) ? false :
-                "glaz9097@gmail.com" == login && "password2281488" == password ? true : false;
+            return !ValidateEnteredData(login, password) ? false : true;
         }
 
         private bool ValidateEnteredData(string login , string password)
